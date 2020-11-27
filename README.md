@@ -5,6 +5,10 @@ Quick Guide to Useful Python Items
 https://colab.research.google.com/drive/1t5oDF2qXfEYqmc2ssvep01Wa-1yOldHP?usp=sharing 
 
 
+## Runtime Comparison: Compare Two Solutions
+https://colab.research.google.com/drive/1jvkSq9Bsh83X4amgHLN6CJj5vtlhSbNO#scrollTo=54qBU7WHI2zU
+
+
 ## Pipenv & IDE Configuration Guide
 linux pipenv, linter, formatter, vsCode, atom, vim, jupyter notebook, configuration & setup
 https://docs.google.com/document/d/1dZJI20D7uIknT1pdlTSmlHH1WPYdVhs2PSUyH1qdnUo/edit 
@@ -52,7 +56,22 @@ for index, (key, value) in enumerate(input_dict.items()):
 
 ## collections counter (dictionary of item counts)
 ```
-from collections import counter
+import collections
+from collections import Counter
+ 
+# 4 'a's & 2 'b's
+input_list = ['a', 'a', 'a', 'a', 'b', 'b']
+ 
+counter_dict = collections.Counter(input_list)
+ 
+print(counter_dict)
+ 
+print(type(counter_dict))
+ 
+print(counter_dict['a'])
+ 
+print('a' in counter_dict)
+https://colab.research.google.com/drive/1jvkSq9Bsh83X4amgHLN6CJj5vtlhSbNO#scrollTo=54qBU7WHI2zU
 
 ```
 
