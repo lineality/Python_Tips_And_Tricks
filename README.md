@@ -64,3 +64,11 @@ boolean_result = all(element > 3 for element in test_list)
 
 
 ## sort vs. sorted (in place, reverse order)
+
+## to get file extension:
+use filename.split('.')[-1] to split on the period separating the extension and filename and select the extension
+
+## select all files of one type:
+you can use import glob and glob.glob(*.rds) to select all rds files from a dir (instead of listdir which is all files)
+
+
