@@ -31,9 +31,23 @@ https://www.youtube.com/watch?v=KEdq7gC_RTA&list=PLQzZ4krxwT9Yay3kz8ly4wXiYJHzMt
 
 ## enumerate: cleanly separate and use both indices and list-items
 ```
+# list / array
 input_list = [1,2,3]
+ 
 for index,item in enumerate(input_list):
-  print(index,item)
+   print(index,item)
+ 
+# dictionary (just keys)
+input_dict = {1:"a", 2:"b", 3:"c"}
+ 
+for index, key in enumerate(input_dict):
+   print(index, key)
+ 
+# dictionary (keys and values!)
+input_dict = {1:"a", 2:"b", 3:"c"}
+ 
+for index, (key, value) in enumerate(input_dict.items()):
+   print(index, key, value)
 ```
 
 ## collections counter (dictionary of item counts)
