@@ -4,6 +4,11 @@ Quick Guide to Useful Python Items
 ## Example Sandbox Colab 
 https://colab.research.google.com/drive/1t5oDF2qXfEYqmc2ssvep01Wa-1yOldHP?usp=sharing 
 
+
+## Pipenv & IDE Configuration Guide
+linux pipenv, linter, formatter, vsCode, atom, vim, jupyter notebook, configuration & setup
+https://docs.google.com/document/d/1dZJI20D7uIknT1pdlTSmlHH1WPYdVhs2PSUyH1qdnUo/edit 
+
 ## Nifty General Python Courses
 - https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/ 
 - https://www.udemy.com/course/ultimate-python-tutorial/ Derek Banas
