@@ -14,7 +14,7 @@ https://docs.google.com/document/d/1dZJI20D7uIknT1pdlTSmlHH1WPYdVhs2PSUyH1qdnUo/
 - https://www.udemy.com/course/ultimate-python-tutorial/ Derek Banas
 
 
-## debugger: vsCode
+## Debugger: vsCode
 
 #### vsCode Debugger in Python, 4-Lesson-Course:
 https://www.youtube.com/watch?v=KEdq7gC_RTA&list=PLQzZ4krxwT9Yay3kz8ly4wXiYJHzMtsWi
