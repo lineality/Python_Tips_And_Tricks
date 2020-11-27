@@ -2,7 +2,7 @@
 Quick Guide to Useful Python Items
 
 ## Example Sandbox Colab 
-#### https://colab.research.google.com/drive/1t5oDF2qXfEYqmc2ssvep01Wa-1yOldHP?usp=sharing 
+https://colab.research.google.com/drive/1t5oDF2qXfEYqmc2ssvep01Wa-1yOldHP?usp=sharing 
 
 ## Nifty General Python Courses
 - https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/ 
