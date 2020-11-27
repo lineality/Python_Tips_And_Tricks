@@ -1,4 +1,4 @@
-# Python_Tips_-_Tricks
+# Python_Tips_And_Tricks
 Quick Guide to Useful Python Items
 
 ## Example Sandbox Colab https://colab.research.google.com/drive/1t5oDF2qXfEYqmc2ssvep01Wa-1yOldHP?usp=sharing 
