@@ -75,6 +75,34 @@ https://colab.research.google.com/drive/1jvkSq9Bsh83X4amgHLN6CJj5vtlhSbNO#scroll
 
 ```
 
+## sort vs. sorted (in place, reverse order)
+
+#### item.sort() vs. sorted(item)
+#### sort --> in place
+#### sorted --> not 'in place'
+#### sorted --> has reverse-order feature
+```
+# sorted(item)
+numbers = [1, 3, 5, 9, 0]
+ 
+print(numbers)
+ 
+print(sorted(numbers))
+ 
+print(numbers)
+```
+ 
+```
+```
+ 
+```
+```
+ 
+ 
+
+
+
+
 ## ~ The tilde operator
 ~ for 0 count offset index
 ~x
@@ -103,7 +131,8 @@ number_variable.is_integer() == False
 boolean_result = all(element > 3 for element in test_list)
 
 
-## sort vs. sorted (in place, reverse order)
+
+
 
 ## to get file extension:
 use filename.split('.')[-1] to split on the period separating the extension and filename and select the extension
