@@ -93,9 +93,28 @@ print(numbers)
 ```
  
 ```
+# item.sort
+ 
+numbers = [1, 3, 5, 9, 0]
+ 
+print(numbers)
+ 
+print(numbers.sort())
+ 
+print(numbers)
+ 
 ```
  
 ```
+# reverse sorted(item)
+numbers = [1, 3, 5, 9, 0]
+ 
+print(numbers)
+ 
+print(sorted(numbers, reverse = True))
+ 
+print(numbers)
+ 
 ```
  
  
