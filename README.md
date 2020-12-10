@@ -106,6 +106,7 @@ print(numbers)
 ```
  
 ```
+# reverse order
 # reverse sorted(item)
 numbers = [1, 3, 5, 9, 0]
  
