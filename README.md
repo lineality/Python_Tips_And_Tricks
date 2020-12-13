@@ -142,17 +142,34 @@ list - []
 ''.join(["a","b"])
 
 
-## check for remainder:
-number_variable.is_integer() == False
+
+
+# Check (For) Remainder & Check (For) Integer
+
+```
+# set a value
+check_this = 5
+ 
+# Boolean return for checking divisibility
+not check_this % 2
+
+# look at the outcome of a computation
+check_this = 5/2
+ 
+# Boolean return for checking if result is an integer
+check_this.is_integer()
+```
+
 	
 
 ## all()
-# Runs on everything in a list
+## Check everything in a list
+
 boolean_result = all(element > 3 for element in test_list)
+```
 
 
-
-
+```
 
 ## to get file extension:
 use filename.split('.')[-1] to split on the period separating the extension and filename and select the extension
