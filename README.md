@@ -165,9 +165,28 @@ check_this.is_integer()
 ## all()
 ## Check everything in a list
 
+#### boolean_result = all(element > 3 for element in test_list)
+```
+test_list = [1, 3, 5, 9, 0]
+ 
 boolean_result = all(element > 3 for element in test_list)
+boolean_result
 ```
 
+```
+test_list = [1, 3, 5, 9, 0]
+ 
+# check if items are less than 10
+boolean_result = all(element < 10 for element in test_list)
+boolean_result
+```
+
+```
+test_list = ["a", "b", "c"]
+ 
+# check if all items are strings
+boolean_result = all(type(element) == str for element in test_list)
+boolean_result
 
 ```
 
