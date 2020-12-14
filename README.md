@@ -4,10 +4,8 @@ Quick Guide to Useful Python Items
 ## Example Sandbox Colab 
 https://colab.research.google.com/drive/1t5oDF2qXfEYqmc2ssvep01Wa-1yOldHP?usp=sharing 
 
-
 ## Runtime Comparison: Compare Two Solutions
 https://colab.research.google.com/drive/1jvkSq9Bsh83X4amgHLN6CJj5vtlhSbNO#scrollTo=54qBU7WHI2zU
-
 
 ## Pipenv & IDE Configuration Guide
 linux pipenv, linter, formatter, vsCode, atom, vim, jupyter notebook, configuration & setup
@@ -193,7 +191,11 @@ boolean_result
 ## to get file extension:
 use filename.split('.')[-1] to split on the period separating the extension and filename and select the extension
 
+
 ## select all files of one type:
-you can use import glob and glob.glob(*.rds) to select all rds files from a dir (instead of listdir which is all files)
+you can use import glob and glob.glob(*.rds) to select all .rds files from a dir (instead of listdir which is all files)
+
+
+...
 
 
