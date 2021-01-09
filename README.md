@@ -206,8 +206,8 @@ use filename.split('.')[-1] to split on the period separating the extension and 
 
 
 ## glob:
-#### glob is am optimized built-in unix related pattern matcher for file names
-glob can use regeX-like wildcard searches: *, ?, [ranges]
+#### glob is an optimized, built-in, unix related, pattern matcher for file names
+#### glob can use regeX-like wildcard searches: *, ?, [ranges]
  
 https://www.geeksforgeeks.org/how-to-use-glob-function-to-find-files-recursively-in-python/ 
  
