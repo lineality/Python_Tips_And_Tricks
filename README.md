@@ -227,3 +227,6 @@ print(glob.glob("*.txt")
 # slice reversing
 #### return the reverse order of a list
 list1[::-1]
+
+
+try-except block
