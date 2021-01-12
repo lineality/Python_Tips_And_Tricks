@@ -11,7 +11,7 @@ https://colab.research.google.com/drive/1jvkSq9Bsh83X4amgHLN6CJj5vtlhSbNO#scroll
 linux pipenv, linter, formatter, vsCode, atom, vim, jupyter notebook, configuration & setup
 https://docs.google.com/document/d/1dZJI20D7uIknT1pdlTSmlHH1WPYdVhs2PSUyH1qdnUo/edit 
 
-## Nifty General Python Courses
+## Recommended General Python Courses
 - https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/ 
 - https://www.udemy.com/course/ultimate-python-tutorial/ Derek Banas
 
@@ -30,6 +30,13 @@ https://www.youtube.com/watch?v=KEdq7gC_RTA&list=PLQzZ4krxwT9Yay3kz8ly4wXiYJHzMt
 - variables: local vs. global
 - the debugger-console
 - inspecting 'state'
+
+#so more head displays
+#override display option
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+
 
 ## enumerate: cleanly separate and use both indices and list-items
 ```
@@ -117,8 +124,12 @@ print(numbers)
 ```
  
  
-
-
+## Large .csv with non-utf8 encoding
+ 
+```
+import pandas as pd
+df = pd.read_csv("FY2018_archived_opportunities.csv", encoding = "ISO-8859-1")
+```
 
 
 ## ~ The tilde operator
