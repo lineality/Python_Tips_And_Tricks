@@ -21,6 +21,12 @@ https://docs.google.com/document/d/1dZJI20D7uIknT1pdlTSmlHH1WPYdVhs2PSUyH1qdnUo/
 #### vsCode Debugger in Python, 4-Lesson-Course:
 https://www.youtube.com/watch?v=KEdq7gC_RTA&list=PLQzZ4krxwT9Yay3kz8ly4wXiYJHzMtsWi
 
+# ~Unix Terminal 
+#### print text file in terminal
+```
+$ cat file_name
+```
+
 #### Content Map Skills for Debugging:
 - breakpoints
 - traversing
@@ -232,6 +238,8 @@ print(glob.glob("*.txt")
 
 
 
+
+...
 
 # slice reversing
 #### return the reverse order of a list
