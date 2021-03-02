@@ -232,7 +232,7 @@ https://www.geeksforgeeks.org/how-to-use-glob-function-to-find-files-recursively
 # find and print name of .txt files in the Current Working Directory
 import glob
  
-print(glob.glob("*.txt")
+print(glob.glob("*.txt"))
  
 ```
 
@@ -247,3 +247,54 @@ list1[::-1]
 
 
 try-except block
+
+
+...
+
+Zip
+
+$zip myfile.zip filename.txt
+
+
+# open a file with "with open"
+To avoid issues with not-closing files, some say this is the default best practice for python
+
+```
+with open(file.txt', "r") as file_object:
+# read file content
+data = file_object.read()
+# print file contents
+print(data)
+
+# using "with statement" with open() function
+ 
+# make it
+with open('sample.txt', "w") as file_object:
+   # read file content
+   file_object.write("write to file\n")
+ 
+# read it
+with open('sample.txt', "r") as file_object:
+   # read file content
+   data = file_object.read()
+   # print file contents
+   print(data)
+ 
+# add to it
+with open('sample.txt', "a") as file_object:
+   # read file content
+   file_object.write("write more to file\n")
+ 
+# read it
+with open('sample.txt', "r") as file_object:
+   # read file content
+   data = file_object.read()
+   # print file contents
+   print(data)
+ 
+# Check if file is closed
+if file_object.closed == False:
+   print('File is not closed')
+else:
+   print('File is closed')
+```
