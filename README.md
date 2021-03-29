@@ -298,3 +298,27 @@ if file_object.closed == False:
 else:
    print('File is closed')
 ```
+
+## Truncating and Rounding
+Truncating and rounding to a given decimal place (without extra libraries etc.) can be oddly not straight forward considering how easy so many things are in vanilla python. Here is one function from: https://realpython.com/python-rounding/
+
+```
+def truncate(n, decimals=2):
+   multiplier = 10 ** decimals
+   return int(n * multiplier) / multiplier
+```
+
+
+## Decimal Type vs. Float Type
+(e.g. for AWS)
+
+```
+from decimal import Decimal
+ 
+def decimal_type_truncated(n, decimals=2):
+  multiplier = 10 ** decimals
+  return Decimal(n * multiplier) / multiplier
+
+decimal_type_truncated(0.6, 2)
+
+```
