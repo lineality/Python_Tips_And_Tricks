@@ -329,4 +329,79 @@ https://colab.research.google.com/drive/1VHk7J2yU2s8zX7fO7VU7pZyfbogKxQlt#scroll
 
 Datetime functions in Python make dealing with times and time ranges manageable. Here are some useful snippets for dealing with dates and time ranges.
 
+```
+# There and Back Again: Normal -> Posix -> Normal
+ 
+import datetime, calendar, time
+from datetime import date, datetime
+ 
+year = 2021
+month = 12
+day = 14
+ 
+Sample_Time = datetime(year,month,day)
+ 
+print("Staring with Normal Time")
+print(Sample_Time)
+print(type(Sample_Time))
+ 
+# Current Time UTC
+ 
+date_time = datetime.utcnow()
+print("\nCurrent Time UTC")
+print(date_time)
+print(type(date_time))
+ 
+# Posix UTC Seconds
+date_time = datetime.utcnow()
+Posix_UTC = calendar.timegm(date_time.utctimetuple())
+print("\nPosix UTC")
+print(Posix_UTC)
+print(type(Posix_UTC))
+ 
+ 
+# Posix UTC miliseconds
+date = datetime.utcnow()
+unix_time_miliseconds = datetime.timestamp(date)*1000
+print("\nPosix UTC miliseconds")
+print(unix_time_miliseconds)
+print(type(unix_time_miliseconds))
+ 
+Time_Stamp = Posix_UTC
+ 
+try:
+   # if you encounter a "year is out of range" error
+   # the timestamp may be in milliseconds, try
+   # `Time_Stamp /= 1000` in that case
+   date_time = datetime.utcfromtimestamp(Time_Stamp).strftime('%Y-%m-%d %H:%M:%S')
+   print("\nCurrent Time UTC")
+   print(date_time)
+   print(type(date_time))
+ 
+except:
+   Time_Stamp /= 1000
+   date_time = datetime.utcfromtimestamp(Time_Stamp).strftime('%Y-%m-%d %H:%M:%S')
+   print("\nCurrent Time UTC")
+   print(date_time)
+   print(type(date_time))
+ 
+Time_Stamp_Mili = unix_time_miliseconds
+ 
+ 
+try:
+   # if you encounter a "year is out of range" error
+   # the timestamp may be in milliseconds, try
+   # `Time_Stamp /= 1000` in that case
+   date_time = datetime.utcfromtimestamp(Time_Stamp).strftime('%Y-%m-%d %H:%M:%S')
+   print("\nCurrent Time UTC")
+   print(date_time)
+   print(type(date_time))
+ 
+except:
+   Time_Stamp_Mili /= 1000
+   date_time = datetime.utcfromtimestamp(Time_Stamp).strftime('%Y-%m-%d %H:%M:%S')
+   print("\nCurrent Time UTC")
+   print(date_time)
+   print(type(date_time))
 
+```
