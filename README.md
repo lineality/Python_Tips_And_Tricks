@@ -322,3 +322,11 @@ def decimal_type_truncated(n, decimals=2):
 decimal_type_truncated(0.6, 2)
 
 ```
+
+# Date Time & Posix Time!
+
+https://colab.research.google.com/drive/1VHk7J2yU2s8zX7fO7VU7pZyfbogKxQlt#scrollTo=UbEzt--NLs-7
+
+Datetime functions in Python make dealing with times and time ranges manageable. Here are some useful snippets for dealing with dates and time ranges.
+
+
