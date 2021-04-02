@@ -405,3 +405,36 @@ except:
    print(type(date_time))
 
 ```
+
+## sample Readable-date-string
+
+```
+import datetime, calendar, time
+from datetime import date, datetime
+ 
+# get time
+Sample_Time = datetime.utcnow()
+ 
+# make readable string
+readable_string = Sample_Time.strftime('%Y-%m-%d %H:%M:%S')
+ 
+print('type: ', type(readable_string))
+print(readable_string)
+ 
+
+
+```
+```
+import datetime, calendar, time
+from datetime import date, datetime
+ 
+# get time
+Sample_Time = datetime.utcnow()
+ 
+# make readable string
+readable_string = Sample_Time.strftime('%Y-%m')
+ 
+print('type: ', type(readable_string))
+print(readable_string)
+
+```
