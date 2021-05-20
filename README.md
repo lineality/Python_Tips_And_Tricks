@@ -129,6 +129,36 @@ print(numbers)
  
 ```
  
+## Slicing with intervals (and reversing)
+
+In addition to from and to, you can also slice at an interval
+e.g. from items 1-20, but only every 5th item.
+AND
+If you pick an interval of -1...it reverses your list. 
+ 
+```
+list1 = [1,2,3,4,5,6,7,8]
+ 
+# whole list
+print( list1 )
+ 
+# from and to
+print( list1[0:3] )
+ 
+# add an interval!
+print( list1[1:7:2] )
+ 
+# reverses list
+print( list1[::-1] )
+ 
+ 
+ 
+```
+ 
+ 
+ 
+ 
+```
  
 ## Large .csv with non-utf8 encoding
  
@@ -403,38 +433,5 @@ except:
    print("\nCurrent Time UTC")
    print(date_time)
    print(type(date_time))
-
-```
-
-## sample Readable-date-string
-
-```
-import datetime, calendar, time
-from datetime import date, datetime
- 
-# get time
-Sample_Time = datetime.utcnow()
- 
-# make readable string
-readable_string = Sample_Time.strftime('%Y-%m-%d %H:%M:%S')
- 
-print('type: ', type(readable_string))
-print(readable_string)
- 
-
-
-```
-```
-import datetime, calendar, time
-from datetime import date, datetime
- 
-# get time
-Sample_Time = datetime.utcnow()
- 
-# make readable string
-readable_string = Sample_Time.strftime('%Y-%m')
- 
-print('type: ', type(readable_string))
-print(readable_string)
 
 ```
