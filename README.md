@@ -156,10 +156,6 @@ print( list1[::-1] )
 ```
  
  
- 
- 
-```
- 
 ## Large .csv with non-utf8 encoding
  
 ```
