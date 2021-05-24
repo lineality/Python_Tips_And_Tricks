@@ -128,7 +128,6 @@ print(sorted(numbers, reverse = True))
 print(numbers)
  
 ```
- 
 ## Slicing with intervals (and reversing)
 
 In addition to from and to, you can also slice at an interval
@@ -154,7 +153,6 @@ print( list1[::-1] )
  
  
 ```
- 
  
 ## Large .csv with non-utf8 encoding
  
@@ -432,6 +430,40 @@ except:
 
 ```
 
+## sample Readable-date-string
+
+```
+import datetime, calendar, time
+from datetime import date, datetime
+ 
+# get time
+Sample_Time = datetime.utcnow()
+ 
+# make readable string
+readable_string = Sample_Time.strftime('%Y-%m-%d %H:%M:%S')
+ 
+print('type: ', type(readable_string))
+print(readable_string)
+```
+
+## or
+```
+import datetime, calendar, time
+from datetime import date, datetime
+ 
+# get time
+Sample_Time = datetime.utcnow()
+ 
+# make readable string
+readable_string = Sample_Time.strftime('%Y-%m')
+ 
+print('type: ', type(readable_string))
+print(readable_string)
+
+```
+
+```
+
 ## Recreate a pipenv from a pipenv-lock file
 
 ```
@@ -440,7 +472,6 @@ pipenv install restore
 
 
 ## Merge a List of Lists into a One List
-
 
 ```
 list_of_lists = [[9, 2, 9, 4], [5, 9, 7], [8, 9]]
