@@ -431,3 +431,20 @@ except:
    print(type(date_time))
 
 ```
+
+## Recreate a pipenv from a pipenv-lock file
+
+```
+pipenv install restore
+```
+
+
+## Merge a List of Lists into a One List
+
+
+```
+list_of_lists = [[9, 2, 9, 4], [5, 9, 7], [8, 9]]
+merged_list = [i for sublist in list_of_lists for i in sublist]
+merged_list
+
+```
