@@ -479,3 +479,10 @@ merged_list = [i for sublist in list_of_lists for i in sublist]
 merged_list
 
 ```
+
+
+## Standard Unicode Error
+```
+import pandas as pd
+df = pd.read_csv("YOUR_FILE_NAME_HERE.csv", encoding = "ISO-8859-1" )
+```
