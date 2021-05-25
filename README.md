@@ -481,7 +481,7 @@ merged_list
 ```
 
 
-## Standard Unicode Error
+## Deal with Standard "Unicode Error"
 ```
 import pandas as pd
 df = pd.read_csv("YOUR_FILE_NAME_HERE.csv", encoding = "ISO-8859-1" )
