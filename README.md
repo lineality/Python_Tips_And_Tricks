@@ -184,6 +184,7 @@ list - []
 
 
 # Check (For) Remainder & Check (For) Integer
+# Not Mod
 
 ```
 # set a value
@@ -327,6 +328,7 @@ else:
 Truncating and rounding to a given decimal place (without extra libraries etc.) can be oddly not straight forward considering how easy so many things are in vanilla python. Here is one function from: https://realpython.com/python-rounding/
 
 ```
+# This sets the default number of decimals to 2
 def truncate(n, decimals=2):
    multiplier = 10 ** decimals
    return int(n * multiplier) / multiplier
@@ -485,4 +487,25 @@ merged_list
 ```
 import pandas as pd
 df = pd.read_csv("YOUR_FILE_NAME_HERE.csv", encoding = "ISO-8859-1" )
+```
+
+
+## Formatting: Decimals
+http://cis.bentley.edu/sandbox/wp-content/uploads/Documentation-on-f-strings.pdf
+'''
+x = 4.5 print(f'This will print out the variable x: {x:.3f}') 
+'''
+
+
+## Transform Pandas: Carry out a function on each item in a pandas dataframe column
+```
+# e.g. feature engineer a new column which is the length of a string in another column
+# https://towardsdatascience.com/when-to-use-pandas-transform-function-df8861aa0dcf
+
+# Step 1: Make a Function
+def name_len(name):
+    return len(name)
+
+# Step 2: df.transform(name_of_function)
+df["name_len"] = df["Contractors"].transform(name_len)
 ```
