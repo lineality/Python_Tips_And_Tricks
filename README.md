@@ -509,3 +509,21 @@ def name_len(name):
 # Step 2: df.transform(name_of_function)
 df["name_len"] = df["Contractors"].transform(name_len)
 ```
+
+## Unspecified number of multiple function inputs: "Variable Argument Lists"
+```
+## Unspecified number of multiple function inputs: "Variable Argument Lists"
+
+def add_these(*input_numbers_to_add):
+
+        total_for_output = 0
+
+        for this_number in input_numbers_to_add:
+            total_for_output += this_number
+
+        return total_for_output
+
+# Run Program
+add_these(2,3,4)
+
+```
