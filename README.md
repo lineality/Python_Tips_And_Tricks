@@ -527,3 +527,14 @@ def add_these(*input_numbers_to_add):
 add_these(2,3,4)
 
 ```
+
+
+## Unzip in Python
+```
+import zipfile
+
+# # Extract whole zip file to your current working directory: 
+with zipfile.ZipFile("TARGET_FILE_NAME.zip","r") as zf:
+    zf.extractall()
+```
+
