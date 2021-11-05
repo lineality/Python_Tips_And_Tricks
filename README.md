@@ -49,8 +49,8 @@ pd.set_option('display.width', 1000)
 # list / array
 input_list = [1,2,3]
  
-for index,item in enumerate(input_list):
-   print(index,item)
+for index, list_item in enumerate(input_list):
+   print(index,list_item)
  
 # dictionary (just keys)
 input_dict = {1:"a", 2:"b", 3:"c"}
@@ -537,4 +537,115 @@ import zipfile
 with zipfile.ZipFile("TARGET_FILE_NAME.zip","r") as zf:
     zf.extractall()
 ```
+
+
+## Iter-items: example: use pandas iteritems to iterate through a df column to feature-engineer values in a new column from two dataframes to transform zipcodes into geocodes:
+
+
+```
+
+!wget https://gist.githubusercontent.com/erichurst/7882666/raw/5bdc46db47d9515269ab12ed6fb2850377fd869e/US%2520Zip%2520Codes%2520from%25202013%2520Government%2520Data
+
+zip_df = pd.read_csv("US Zip Codes from 2013 Government Data")
+
+
+# make new columns
+df["geo_lat"] = 0.0
+df["geo_long"] = 0.0
+ 
+# test where your data are going
+index = 1
+# geolat
+print(df.iloc[index, 29])
+# geolong
+print(df.iloc[index, 30])
+ 
+
+# script for making geocodes for zipcodes from list
+for index, value in df["zip_code"].iteritems():
+ 
+   if (value in zip_df["ZIP"].values) != False:
+ 
+       # geolat
+       df.iloc[index, 29] = zip_df[zip_df["ZIP"] == value]["LAT"].values[0]
+ 
+       # geolong
+       df.iloc[index, 30] = zip_df[zip_df["ZIP"] == value]["LNG"].values[0]
+ 
+   #else: print("0")
+ 
+print("Done!")
+
+
+```
+
+## Google Colab auto make and auto download a timestamp-named .csv file
+
+```
+
+# # make and download a time-stamped saved copy of .csv
+ 
+import datetime, calendar, time
+from datetime import date, datetime
+from google.colab import files
+ 
+# get time (stamp)
+Sample_Time = datetime.utcnow()
+ 
+# make timestamp text (string)
+timestamp_string = str( Sample_Time.strftime('v_%Y_%m_%d__%H%M_%S') )
+ 
+# make file name
+file_name = f'save_csv_{timestamp_string}.csv'
+ 
+# make .csv from your dataframe (df)
+df.to_csv( file_name, index = True )
+ 
+# download .csv
+files.download( file_name )
+ 
+```
+
+
+
+## JSON and nested-Dictionary string search in python:
+If you have a nested dictionary as a string (e.g. from an AWS result), you can dig into that nested dictionary BUT you may need to convert that string into a json object first.
+
+```
+import json
+dict_string = """{"body":{"item":12}, "key":3}"""
+ 
+dict1 = json.loads(dict_string)
+dict1["body"]["item"]
+
+```
+
+
+## Regex in Python: Regular Expressions
+Here is a real example where you will need to extract data that you want.
+This is a bit of a cludge using a combination of string 'slicing'[#:#] with Regex.
+
+```
+import re
+ 
+# object from AWS directory query
+text = "s3.ObjectSummary(bucket_name='YOUR_BUCKET_NAME', key='YOUR_FOLDER_NAME/YOUR_FILE_NAME.csv')"
+ 
+# after this
+after_this = 'key='
+ 
+# get item after your choice of characters:
+pattern = f'(?<={after_this}).*$'
+# use regex
+target = re.findall(pattern,text)
+ 
+# strip out extra characters
+target = str(target[0][1:-2])
+# inspection of results
+print(target)
+ 
+```
+
+
+
 
