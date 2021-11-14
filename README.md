@@ -14,8 +14,6 @@ https://docs.google.com/document/d/1dZJI20D7uIknT1pdlTSmlHH1WPYdVhs2PSUyH1qdnUo/
 ## Recommended General Python Courses
 - https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/ 
 - https://www.udemy.com/course/ultimate-python-tutorial/ Derek Banas
-
-
 ## Debugger: vsCode
 
 #### vsCode Debugger in Python, 4-Lesson-Course:
