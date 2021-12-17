@@ -14,6 +14,8 @@ https://docs.google.com/document/d/1dZJI20D7uIknT1pdlTSmlHH1WPYdVhs2PSUyH1qdnUo/
 ## Recommended General Python Courses
 - https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/ 
 - https://www.udemy.com/course/ultimate-python-tutorial/ Derek Banas
+
+
 ## Debugger: vsCode
 
 #### vsCode Debugger in Python, 4-Lesson-Course:
@@ -431,6 +433,12 @@ except:
 ```
 
 ## sample Readable-date-string
+```
+from datetime import datetime
+date_time = datetime.utcnow()
+date_time.strftime('%Y_%m_%d_%H_%M_%S')
+```
+
 
 ```
 import datetime, calendar, time
@@ -646,4 +654,8 @@ print(target)
 
 
 
+# Sum List of Numbers
 
+```
+total = sum(item for item in NAME_OF_YOUR_LIST)
+```
