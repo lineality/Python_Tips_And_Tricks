@@ -348,6 +348,20 @@ def decimal_type_truncated(n, decimals=2):
 decimal_type_truncated(0.6, 2)
 
 ```
+# Date Time & Posix Time!
+```
+# Convert a datetime.date object to a datetime.datetime object
+from datetime import date, datetime
+ 
+just_a_date = date.today()
+ 
+# inspection
+print(just_a_date)
+ 
+converted_to_datetime = datetime.combine( just_a_date, datetime.min.time())
+# inspection
+print(converted_to_datetime)
+```
 
 # Date Time & Posix Time!
 
