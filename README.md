@@ -673,3 +673,19 @@ print(target)
 ```
 total = sum(item for item in NAME_OF_YOUR_LIST)
 ```
+
+
+# Create a Row-Number Column (as the first column)
+```
+import pandas as pd
+import numpy as np
+
+# Create a new row containing row numbers:
+df['Row_Number'] = np.arange(df.shape[0]) + 1
+
+# Select new row to be moved to the front (made the first column)
+new_first_column = df.pop('Row_Number')
+  
+# Move new row to the front (make it the first column)
+df.insert(0, 'Row_Number', new_first_column)
+```
