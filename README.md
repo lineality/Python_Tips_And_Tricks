@@ -689,3 +689,37 @@ new_first_column = df.pop('Row_Number')
 # Move new row to the front (make it the first column)
 df.insert(0, 'Row_Number', new_first_column)
 ```
+
+
+
+
+# function to turn a string into a list for pandas
+
+```
+def string_to_list(string_input):
+
+    # print( type( string_input ) )
+    # print("1", string_input  )
+
+    string_input = string_input.replace("[", "")
+    # print("2", string_input  )
+
+    string_input = string_input.replace("]", "")
+    # print("3", string_input  )
+
+    string_input = string_input.replace('"', "")
+    # print("4", string_input  )
+
+    string_input = string_input.replace("'", "")
+    # print("5", string_input  )
+
+    string_input = list(string_input.split(','))
+    # print("6",  string_input  )
+
+    return string_input
+
+# test
+string_input = '["1","2","3"]'
+string_input = '["Abc","bbb","ccc"]'
+print ( string_to_list(string_input) )
+```
