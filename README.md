@@ -693,33 +693,44 @@ df.insert(0, 'Row_Number', new_first_column)
 
 
 
-# function to turn a string into a list for pandas
+
 
 ```
+# function to turn a string into a list for pandas
+ 
 def string_to_list(string_input):
+ 
+   # print( type( string_input ) )
+   # print("1", string_input  )
+ 
+   string_input = string_input.replace("[", "")
+   # print("2", string_input  )
+ 
+   string_input = string_input.replace("]", "")
+   # print("3", string_input  )
+ 
+   string_input = string_input.replace('"', "")
+   # print("4", string_input  )
+ 
+   string_input = string_input.replace("'", "")
+   # print("5", string_input  )
+ 
+   string_input = list(string_input.split(','))
+   # print("6",  string_input  )
+ 
+   return string_input
+ 
+# Testing The Function
+string_input1 = '["1","2","3"]'
+print( type( string_input1) )
+ 
+string_input2 = '["Abc","bbb","ccc"]'
+print( type( string_input2) )
+ 
+print( string_to_list(string_input1) )
+print( type( string_to_list(string_input1) ) )
+ 
+print( string_to_list(string_input2) )
+print( type( string_to_list(string_input2) ) )
 
-    # print( type( string_input ) )
-    # print("1", string_input  )
-
-    string_input = string_input.replace("[", "")
-    # print("2", string_input  )
-
-    string_input = string_input.replace("]", "")
-    # print("3", string_input  )
-
-    string_input = string_input.replace('"', "")
-    # print("4", string_input  )
-
-    string_input = string_input.replace("'", "")
-    # print("5", string_input  )
-
-    string_input = list(string_input.split(','))
-    # print("6",  string_input  )
-
-    return string_input
-
-# test
-string_input = '["1","2","3"]'
-string_input = '["Abc","bbb","ccc"]'
-print ( string_to_list(string_input) )
 ```
