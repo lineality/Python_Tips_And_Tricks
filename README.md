@@ -761,3 +761,20 @@ for index, item in enumerate(df.columns):
 #print( index_dict )
 index_dict
 ```
+
+
+# To then drop a list of rows by index number:
+
+```
+# # Example List
+# list_of_indices_to_drop = [26,25,24,23,22,21,20,17,16,14,12,11,10,9,7,6,5,4,3,2]
+ 
+for i in list_of_indices_to_drop:
+   this_column = index_dict[i]
+ 
+   df = df.drop([this_column], axis = 1)
+ 
+# # inspection
+# df.head(1)   
+
+```
