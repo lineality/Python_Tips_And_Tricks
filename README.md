@@ -742,16 +742,19 @@ print( type( string_to_list(string_input2) ) )
 # Script to make a dictionary/display of column iloc index values
 
 ```
+########################################################
+# Make and Print Dictionary of Column Names and Indices
+########################################################
+
+import pandas as pd
+
 df = pd.read_csv("xyz.csv")
 
 # make a dictionary to store the values
 index_dict = {}
 
-# iterate though each item in the list of df columns
+# iterate through each item in the list of df columns
 for index, item in enumerate(df.columns):
-    """
-
-    """
     # # inspection
     # print( index, item )
 
@@ -777,4 +780,10 @@ for i in list_of_indices_to_drop:
 # # inspection
 # df.head(1)   
 
+```
+
+# infer data types of columns:
+```
+for column in df.columns:
+   print(pd.api.types.infer_dtype(df[column]))
 ```
