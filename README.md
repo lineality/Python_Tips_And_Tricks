@@ -805,3 +805,10 @@ this_dic = {4:70, 6: 550, 8: 5, 5: 64, 2: 3}
 print(sort_dict_by_values(this_dic))
  
 ```
+
+
+# slice dictionary keys (e.g. get a list of the top 5 items)
+```
+list(dict.keys(this_dictionary))[:5]
+
+```
