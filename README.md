@@ -809,6 +809,13 @@ print(sort_dict_by_values(this_dic))
 
 # slice dictionary keys (e.g. get a list of the top 5 items)
 ```
-list(dict.keys(this_dictionary))[:5]
+def get_top_five_keys(this_dict):
+ 
+   return list(dict.keys(this_dict))[:5]
+ 
+# Test it
+this_dic = {4:70, 6: 550, 8: 5, 5: 64, 2: 3}
+print( get_top_five_keys(this_dic) )
+ 
 
 ```
