@@ -1,6 +1,9 @@
 # Python_Tips_And_Tricks
 Quick Guide to Useful Python Items
 
+# 
+
+
 ## Example Sandbox Colab 
 https://colab.research.google.com/drive/1t5oDF2qXfEYqmc2ssvep01Wa-1yOldHP?usp=sharing 
 
@@ -330,8 +333,8 @@ Truncating and rounding to a given decimal place (without extra libraries etc.) 
 ```
 # This sets the default number of decimals to 2
 def truncate(n, decimals=2):
-   multiplier = 10 ** decimals
-   return int(n * multiplier) / multiplier
+    multiplier = 10 ** decimals
+    return int(n * multiplier) / multiplier
 ```
 
 
@@ -786,4 +789,19 @@ for i in list_of_indices_to_drop:
 ```
 for column in df.columns:
    print(pd.api.types.infer_dtype(df[column]))
+```
+
+# infer data types of columns:
+
+```
+def sort_dict_by_values(input_dict):
+  
+   output = dict( sorted( input_dict.items(),key= lambda x:x[1] ) )
+ 
+   return output
+ 
+# Test it!
+this_dic = {4:70, 6: 550, 8: 5, 5: 64, 2: 3}
+print(sort_dict_by_values(this_dic))
+ 
 ```
