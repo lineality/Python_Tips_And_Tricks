@@ -819,3 +819,21 @@ print( get_top_five_keys(this_dic) )
  
 
 ```
+
+
+# turn list-as-string into a list
+################
+# Format .......
+################
+# TODO: fix this
+raw_string_list = raw_string_list.split(',')
+ 
+new_list = []
+ 
+for i in raw_string_list:
+   new_list.append( int(i) )
+ 
+# inspection
+print(type(new_list), new_list)
+
+
