@@ -837,3 +837,12 @@ for i in raw_string_list:
 print(type(new_list), new_list)
 
 
+# Get Random Item From List
+import random
+ 
+list_of_items = [1,2,3]
+ 
+random_item_01 = random.choice(list_of_items)
+ 
+print (random_item_01)
+
