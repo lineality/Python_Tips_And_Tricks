@@ -846,3 +846,13 @@ random_item_01 = random.choice(list_of_items)
  
 print (random_item_01)
 
+
+# Expand Pandas Display for Long Text etc
+# show more df.head() displays
+# override display size defaults
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+# show long strings inside cells
+pd.options.display.max_colwidth = 500
+ 
