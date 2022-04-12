@@ -865,16 +865,41 @@ pd.options.display.max_colwidth = 500
 (no python installs needed, just vanilla imports)
 
 ```
+"""
+Code to rename all files in a directory
+with the name of the directory appended 
+to the file name
+with a period between:
+
+e.g.
+folder_name.original_name.suffix
+
+e.g.
+whalepics.231.jpg
+"""
+
+# import your vanilla libraries (no pip installs needed)
 import os 
 import glob
 
-# get current working dirctory path
-full_cwd = os.getcwd()
+# get the folder name (whole current working directory path)
+full_path = os.getcwd()
 
-# reduce full name to just the name of the directory
-this_directory = full_cwd.split("/")[-1]
+"""
+reduce full name to just the name of this directory
+split the name on "/" and slice off just the last name [-1]
+"""
+this_directory = full_path.split("/")[-1]
 
+"""
+iterate through a list of folder contents obtained with glob
+'*' is a wildcard to get all files, but you can substitute
+in a specific suffix for a file type
+e.g. glob.glob('*.jpg')
+"""
 for this_file_name in glob.glob('*'):
+
+    # optional print old name
     print("old = ", this_file_name)
     
     # make the new name string	
@@ -883,7 +908,9 @@ for this_file_name in glob.glob('*'):
     # change old name to new neame
     os.rename(this_file_name, new_name)
     
-    # print the new name
-    print("new = ", new_name)
+    # optional print the new name
+    print("new = ", new_name, "\n")
+
+
 
 ```
