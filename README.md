@@ -859,3 +859,31 @@ pd.set_option('display.width', 1000)
 # show long strings inside cells
 pd.options.display.max_colwidth = 500
 ```
+
+
+# append the name of the directory to each file name
+(no python installs needed, just vanilla imports)
+
+```
+import os 
+import glob
+
+# get current working dirctory path
+full_cwd = os.getcwd()
+
+# reduce full name to just the name of the directory
+this_directory = full_cwd.split("/")[-1]
+
+for this_file_name in glob.glob('*'):
+    print("old = ", this_file_name)
+    
+    # make the new name string	
+    new_name = this_directory + "." + this_file_name 
+    
+    # change old name to new neame
+    os.rename(this_file_name, new_name)
+    
+    # print the new name
+    print("new = ", new_name)
+
+```
