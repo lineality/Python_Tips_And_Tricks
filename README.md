@@ -897,7 +897,7 @@ iterate through a list of folder contents obtained with glob
 in a specific suffix for a file type
 e.g. glob.glob('*.jpg')
 """
-for this_file_name in glob.glob('*'):
+for this_file_name in glob.glob('*.*'):
 
     # optional print old name
     print("old = ", this_file_name)
