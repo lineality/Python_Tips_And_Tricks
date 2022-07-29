@@ -911,6 +911,23 @@ for this_file_name in glob.glob('*.*'):
     # optional print the new name
     print("new = ", new_name, "\n")
 
-
-
 ```
+
+
+# make df row values are row numbers, unique row primary key
+```
+# helper function
+def make_new_primary_key_first_column(df):
+ 
+   # Create a new row containing row numbers:
+   df['Row_Number'] = np.arange(df.shape[0]) + 1
+ 
+   # Select new row to be moved to the front (made the first column)
+   new_first_column = df.pop('Row_Number')
+    
+   # Move new row to the front (make it the first column)
+   df.insert(0, 'Row_Number', new_first_column)
+ 
+   return df
+```
+
