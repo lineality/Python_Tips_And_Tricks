@@ -298,7 +298,7 @@ print(data)
  
 # make it
 with open('sample.txt', "w") as file_object:
-   # read file content
+   # write file content
    file_object.write("write to file\n")
  
 # read it
