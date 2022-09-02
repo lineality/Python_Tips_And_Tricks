@@ -1,7 +1,10 @@
 # Python_Tips_And_Tricks
 Quick Guide to Useful Python Items
 
-# 
+###:
+Python can be in some ways combined with R and with C:
+- https://github.com/lineality/run_R_in_Python
+- 
 
 
 ## Example Sandbox Colab 
@@ -931,3 +934,39 @@ def make_new_primary_key_first_column(df):
    return df
 ```
 
+
+# generate random names
+```
+# create the dict and save it to a file
+def make_random_name_string():
+ 
+   import random
+ 
+   random_name_part_1 = [
+       'texas_',
+       'new_york_',
+       'washington_',
+       'LAX_',
+       'D.C._',
+       'london_'
+   ]
+   random_name_part_2 = [
+       'lunar_',
+       'smart_',
+       'carbon_free_',
+       'ESG_',
+       'self_driving_'
+       ]
+   random_name_part_3 = [
+       'city',
+       'base',
+       'event_center',
+       'platform',
+   ]
+ 
+   super_name = f"{random.choice(random_name_part_1)}{random.choice(random_name_part_2)}{random.choice(random_name_part_3)}"
+    return super_name
+ 
+make_random_name_string()
+
+```
