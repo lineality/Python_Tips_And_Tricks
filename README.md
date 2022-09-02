@@ -970,3 +970,60 @@ def make_random_name_string():
 make_random_name_string()
 
 ```
+
+# Item Count in Pandas (via make new df)
+
+```
+"""
+item count -> Totals by type:
+Sometime you will have a dataframe where each row is some item,
+but you need a dataset where each category is a row with totals as columns
+in that category.
+ 
+Here is working code to do that (on the fly) in python.
+ 
+Create a new dataframe in which the rows are states
+and there is a column for total values.
+ 
+e.g. total number of EV charging stations per state
+ 
+"""
+ 
+import pandas as pd
+ 
+# open original df
+df = pd.read_csv("NAME.csv")
+ 
+# make a list_of_catagorical_items
+list_of_catagorical_items = df["XXX"].unique()
+ 
+# create new blank df_item_counts
+df_item_counts = pd.DataFrame()
+ 
+# iterate through list_of_catagorical_items
+for i in list_of_catagorical_items:
+   # get name (initials) of catagorical_item
+   count_by_this = i
+ 
+   # get number of items in the column
+   # conditions will vary case by case...
+   count_of_items = df[ (df["XXX"] == count_by_this) & (df["XXX Code"] == "XXX") ].shape[0]
+ 
+   # make new row
+   df_item_counts = df_item_counts.append({'XXX':i}, ignore_index=True)
+ 
+   # update/ change row label to be the same a certain
+   df.loc[len(df)] = df_item_counts["XXX"]
+ 
+   # save those data
+   df_item_counts.loc[count_by_this, "count"] = count_of_items
+ 
+ 
+# save csv
+df_item_counts.to_csv('NAME.csv', index=False)
+ 
+# print header)
+print( df_item_counts.head(5) )
+
+```
+
