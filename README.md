@@ -54,19 +54,24 @@ pd.set_option('display.width', 1000)
 ```
 # list / array
 input_list = [1,2,3]
- 
+
+
 for index, list_item in enumerate(input_list):
    print(index,list_item)
- 
+
+
 # dictionary (just keys)
 input_dict = {1:"a", 2:"b", 3:"c"}
- 
+
+
 for index, key in enumerate(input_dict):
    print(index, key)
- 
+
+
 # dictionary (keys and values!)
 input_dict = {1:"a", 2:"b", 3:"c"}
- 
+
+
 for index, (key, value) in enumerate(input_dict.items()):
    print(index, key, value)
 ```
@@ -75,18 +80,24 @@ for index, (key, value) in enumerate(input_dict.items()):
 ```
 import collections
 from collections import Counter
- 
+
+
 # 4 'a's & 2 'b's
 input_list = ['a', 'a', 'a', 'a', 'b', 'b']
- 
+
+
 counter_dict = collections.Counter(input_list)
- 
+
+
 print(counter_dict)
- 
+
+
 print(type(counter_dict))
- 
+
+
 print(counter_dict['a'])
- 
+
+
 print('a' in counter_dict)
 https://colab.research.google.com/drive/1jvkSq9Bsh83X4amgHLN6CJj5vtlhSbNO#scrollTo=54qBU7WHI2zU
 
@@ -101,38 +112,52 @@ https://colab.research.google.com/drive/1jvkSq9Bsh83X4amgHLN6CJj5vtlhSbNO#scroll
 ```
 # sorted(item)
 numbers = [1, 3, 5, 9, 0]
- 
+
+
 print(numbers)
- 
+
+
 print(sorted(numbers))
- 
+
+
 print(numbers)
 ```
- 
+
+
 ```
 # item.sort
- 
+
+
 numbers = [1, 3, 5, 9, 0]
- 
+
+
 print(numbers)
- 
+
+
 print(numbers.sort())
- 
+
+
 print(numbers)
- 
+
+
 ```
- 
+
+
 ```
 # reverse order
 # reverse sorted(item)
 numbers = [1, 3, 5, 9, 0]
- 
+
+
 print(numbers)
- 
+
+
 print(sorted(numbers, reverse = True))
- 
+
+
 print(numbers)
- 
+
+
 ```
 ## Slicing with intervals (and reversing)
 
@@ -140,28 +165,37 @@ In addition to from and to, you can also slice at an interval
 e.g. from items 1-20, but only every 5th item.
 AND
 If you pick an interval of -1...it reverses your list. 
- 
+
+
 ```
 list1 = [1,2,3,4,5,6,7,8]
- 
+
+
 # whole list
 print( list1 )
- 
+
+
 # from and to
 print( list1[0:3] )
- 
+
+
 # add an interval!
 print( list1[1:7:2] )
- 
+
+
 # reverses list
 print( list1[::-1] )
- 
- 
+
+
+
+
  
 ```
- 
+
+
 ## Large .csv with non-utf8 encoding
- 
+
+
 ```
 import pandas as pd
 df = pd.read_csv("FY2018_archived_opportunities.csv", encoding = "ISO-8859-1")
@@ -195,13 +229,15 @@ list - []
 ```
 # set a value
 check_this = 5
- 
+
+
 # Boolean return for checking divisibility
 not check_this % 2
 
 # look at the outcome of a computation
 check_this = 5/2
- 
+
+
 # Boolean return for checking if result is an integer
 check_this.is_integer()
 ```
@@ -214,14 +250,16 @@ check_this.is_integer()
 #### boolean_result = all(element > 3 for element in test_list)
 ```
 test_list = [1, 3, 5, 9, 0]
- 
+
+
 boolean_result = all(element > 3 for element in test_list)
 boolean_result
 ```
 
 ```
 test_list = [1, 3, 5, 9, 0]
- 
+
+
 # check if items are less than 10
 boolean_result = all(element < 10 for element in test_list)
 boolean_result
@@ -229,7 +267,8 @@ boolean_result
 
 ```
 test_list = ["a", "b", "c"]
- 
+
+
 # check if all items are strings
 boolean_result = all(type(element) == str for element in test_list)
 boolean_result
@@ -243,7 +282,8 @@ Term Note: Ternary operation: "In computer science, a ternary operator is an ope
 ```
 apple = "red"
 red_fruit = True if apple == "red" else False
- 
+
+
 # inspection
 print(red_fruit)
 ```
@@ -256,15 +296,19 @@ use filename.split('.')[-1] to split on the period separating the extension and 
 ## glob:
 #### glob is an optimized, built-in, unix related, pattern matcher for file names
 #### glob can use regeX-like wildcard searches: *, ?, [ranges]
- 
+
+
 https://www.geeksforgeeks.org/how-to-use-glob-function-to-find-files-recursively-in-python/ 
- 
+
+
 ```
 # find and print name of .txt files in the Current Working Directory
 import glob
- 
+
+
 print(glob.glob("*.txt"))
- 
+
+
 ```
 
 
@@ -298,31 +342,36 @@ data = file_object.read()
 print(data)
 
 # using "with statement" with open() function
- 
+
+
 # make it
 with open('sample.txt', "w") as file_object:
    # write file content
    file_object.write("write to file\n")
- 
+
+
 # read it
 with open('sample.txt', "r") as file_object:
    # read file content
    data = file_object.read()
    # print file contents
    print(data)
- 
-# add to it
+
+
+# add to it (append)
 with open('sample.txt', "a") as file_object:
    # read file content
    file_object.write("write more to file\n")
- 
+
+
 # read it
 with open('sample.txt', "r") as file_object:
    # read file content
    data = file_object.read()
    # print file contents
    print(data)
- 
+
+
 # Check if file is closed
 if file_object.closed == False:
    print('File is not closed')
@@ -346,7 +395,8 @@ def truncate(n, decimals=2):
 
 ```
 from decimal import Decimal
- 
+
+
 def decimal_type_truncated(n, decimals=2):
   multiplier = 10 ** decimals
   return Decimal(n * multiplier) / multiplier
@@ -358,12 +408,15 @@ decimal_type_truncated(0.6, 2)
 ```
 # Convert a datetime.date object to a datetime.datetime object
 from datetime import date, datetime
- 
+
+
 just_a_date = date.today()
- 
+
+
 # inspection
 print(just_a_date)
- 
+
+
 converted_to_datetime = datetime.combine( just_a_date, datetime.min.time())
 # inspection
 print(converted_to_datetime)
@@ -377,44 +430,55 @@ Datetime functions in Python make dealing with times and time ranges manageable.
 
 ```
 # There and Back Again: Normal -> Posix -> Normal
- 
+
+
 import datetime, calendar, time
 from datetime import date, datetime
- 
+
+
 year = 2021
 month = 12
 day = 14
- 
+
+
 Sample_Time = datetime(year,month,day)
- 
+
+
 print("Staring with Normal Time")
 print(Sample_Time)
 print(type(Sample_Time))
- 
+
+
 # Current Time UTC
- 
+
+
 date_time = datetime.utcnow()
 print("\nCurrent Time UTC")
 print(date_time)
 print(type(date_time))
- 
+
+
 # Posix UTC Seconds
 date_time = datetime.utcnow()
 Posix_UTC = calendar.timegm(date_time.utctimetuple())
 print("\nPosix UTC")
 print(Posix_UTC)
 print(type(Posix_UTC))
- 
- 
+
+
+
+
 # Posix UTC miliseconds
 date = datetime.utcnow()
 unix_time_miliseconds = datetime.timestamp(date)*1000
 print("\nPosix UTC miliseconds")
 print(unix_time_miliseconds)
 print(type(unix_time_miliseconds))
- 
+
+
 Time_Stamp = Posix_UTC
- 
+
+
 try:
    # if you encounter a "year is out of range" error
    # the timestamp may be in milliseconds, try
@@ -423,17 +487,21 @@ try:
    print("\nCurrent Time UTC")
    print(date_time)
    print(type(date_time))
- 
+
+
 except:
    Time_Stamp /= 1000
    date_time = datetime.utcfromtimestamp(Time_Stamp).strftime('%Y-%m-%d %H:%M:%S')
    print("\nCurrent Time UTC")
    print(date_time)
    print(type(date_time))
- 
+
+
 Time_Stamp_Mili = unix_time_miliseconds
- 
- 
+
+
+
+
 try:
    # if you encounter a "year is out of range" error
    # the timestamp may be in milliseconds, try
@@ -442,7 +510,8 @@ try:
    print("\nCurrent Time UTC")
    print(date_time)
    print(type(date_time))
- 
+
+
 except:
    Time_Stamp_Mili /= 1000
    date_time = datetime.utcfromtimestamp(Time_Stamp).strftime('%Y-%m-%d %H:%M:%S')
@@ -461,15 +530,17 @@ date_time.strftime('%Y_%m_%d_%H_%M_%S')
 
 
 ```
-import datetime, calendar, time
-from datetime import date, datetime
- 
+from datetime import datetime
+
+
 # get time
 Sample_Time = datetime.utcnow()
- 
+
+
 # make readable string
 readable_string = Sample_Time.strftime('%Y-%m-%d %H:%M:%S')
- 
+
+
 print('type: ', type(readable_string))
 print(readable_string)
 ```
@@ -478,13 +549,16 @@ print(readable_string)
 ```
 import datetime, calendar, time
 from datetime import date, datetime
- 
+
+
 # get time
 Sample_Time = datetime.utcnow()
- 
+
+
 # make readable string
 readable_string = Sample_Time.strftime('%Y-%m')
- 
+
+
 print('type: ', type(readable_string))
 print(readable_string)
 
@@ -578,28 +652,35 @@ zip_df = pd.read_csv("US Zip Codes from 2013 Government Data")
 # make new columns
 df["geo_lat"] = 0.0
 df["geo_long"] = 0.0
- 
+
+
 # test where your data are going
 index = 1
 # geolat
 print(df.iloc[index, 29])
 # geolong
 print(df.iloc[index, 30])
- 
+
+
 
 # script for making geocodes for zipcodes from list
 for index, value in df["zip_code"].iteritems():
- 
+
+
    if (value in zip_df["ZIP"].values) != False:
- 
+
+
        # geolat
        df.iloc[index, 29] = zip_df[zip_df["ZIP"] == value]["LAT"].values[0]
- 
+
+
        # geolong
        df.iloc[index, 30] = zip_df[zip_df["ZIP"] == value]["LNG"].values[0]
- 
+
+
    #else: print("0")
- 
+
+
 print("Done!")
 
 
@@ -610,26 +691,33 @@ print("Done!")
 ```
 
 # # make and download a time-stamped saved copy of .csv
- 
+
+
 import datetime, calendar, time
 from datetime import date, datetime
 from google.colab import files
- 
+
+
 # get time (stamp)
 Sample_Time = datetime.utcnow()
- 
+
+
 # make timestamp text (string)
 timestamp_string = str( Sample_Time.strftime('v_%Y_%m_%d__%H%M_%S') )
- 
+
+
 # make file name
 file_name = f'save_csv_{timestamp_string}.csv'
- 
+
+
 # make .csv from your dataframe (df)
 df.to_csv( file_name, index = True )
- 
+
+
 # download .csv
 files.download( file_name )
- 
+
+
 ```
 
 
@@ -640,7 +728,8 @@ If you have a nested dictionary as a string (e.g. from an AWS result), you can d
 ```
 import json
 dict_string = """{"body":{"item":12}, "key":3}"""
- 
+
+
 dict1 = json.loads(dict_string)
 dict1["body"]["item"]
 
@@ -653,23 +742,28 @@ This is a bit of a cludge using a combination of string 'slicing'[#:#] with Rege
 
 ```
 import re
- 
+
+
 # object from AWS directory query
 text = "s3.ObjectSummary(bucket_name='YOUR_BUCKET_NAME', key='YOUR_FOLDER_NAME/YOUR_FILE_NAME.csv')"
- 
+
+
 # after this
 after_this = 'key='
- 
+
+
 # get item after your choice of characters:
 pattern = f'(?<={after_this}).*$'
 # use regex
 target = re.findall(pattern,text)
- 
+
+
 # strip out extra characters
 target = str(target[0][1:-2])
 # inspection of results
 print(target)
- 
+
+
 ```
 
 
@@ -703,39 +797,51 @@ df.insert(0, 'Row_Number', new_first_column)
 
 ```
 # function to turn a string into a list for pandas
- 
+
+
 def string_to_list(string_input):
- 
+
+
    # print( type( string_input ) )
    # print("1", string_input  )
- 
+
+
    string_input = string_input.replace("[", "")
    # print("2", string_input  )
- 
+
+
    string_input = string_input.replace("]", "")
    # print("3", string_input  )
- 
+
+
    string_input = string_input.replace('"', "")
    # print("4", string_input  )
- 
+
+
    string_input = string_input.replace("'", "")
    # print("5", string_input  )
- 
+
+
    string_input = list(string_input.split(','))
    # print("6",  string_input  )
- 
+
+
    return string_input
- 
+
+
 # Testing The Function
 string_input1 = '["1","2","3"]'
 print( type( string_input1) )
- 
+
+
 string_input2 = '["Abc","bbb","ccc"]'
 print( type( string_input2) )
- 
+
+
 print( string_to_list(string_input1) )
 print( type( string_to_list(string_input1) ) )
- 
+
+
 print( string_to_list(string_input2) )
 print( type( string_to_list(string_input2) ) )
 
@@ -777,12 +883,15 @@ index_dict
 ```
 # # Example List
 # list_of_indices_to_drop = [26,25,24,23,22,21,20,17,16,14,12,11,10,9,7,6,5,4,3,2]
- 
+
+
 for i in list_of_indices_to_drop:
    this_column = index_dict[i]
- 
+
+
    df = df.drop([this_column], axis = 1)
- 
+
+
 # # inspection
 # df.head(1)   
 
@@ -800,26 +909,32 @@ for column in df.columns:
 def sort_dict_by_values(input_dict):
   
    output = dict( sorted( input_dict.items(),key= lambda x:x[1] ) )
- 
+
+
    return output
- 
+
+
 # Test it!
 this_dic = {4:70, 6: 550, 8: 5, 5: 64, 2: 3}
 print(sort_dict_by_values(this_dic))
- 
+
+
 ```
 
 
 # slice dictionary keys (e.g. get a list of the top 5 items)
 ```
 def get_top_five_keys(this_dict):
- 
+
+
    return list(dict.keys(this_dict))[:5]
- 
+
+
 # Test it
 this_dic = {4:70, 6: 550, 8: 5, 5: 64, 2: 3}
 print( get_top_five_keys(this_dic) )
- 
+
+
 
 ```
 
@@ -831,12 +946,15 @@ print( get_top_five_keys(this_dic) )
 ################
 # TODO: fix this
 raw_string_list = raw_string_list.split(',')
- 
+
+
 new_list = []
- 
+
+
 for i in raw_string_list:
    new_list.append( int(i) )
- 
+
+
 # inspection
 print(type(new_list), new_list)
 ```
@@ -844,11 +962,14 @@ print(type(new_list), new_list)
 # Get Random Item From List
 ```
 import random
- 
+
+
 list_of_items = [1,2,3]
- 
+
+
 random_item_01 = random.choice(list_of_items)
- 
+
+
 print (random_item_01)
 ```
 
@@ -921,16 +1042,19 @@ for this_file_name in glob.glob('*.*'):
 ```
 # helper function
 def make_new_primary_key_first_column(df):
- 
+
+
    # Create a new row containing row numbers:
    df['Row_Number'] = np.arange(df.shape[0]) + 1
- 
+
+
    # Select new row to be moved to the front (made the first column)
    new_first_column = df.pop('Row_Number')
     
    # Move new row to the front (make it the first column)
    df.insert(0, 'Row_Number', new_first_column)
- 
+
+
    return df
 ```
 
@@ -939,9 +1063,11 @@ def make_new_primary_key_first_column(df):
 ```
 # create the dict and save it to a file
 def make_random_name_string():
- 
+
+
    import random
- 
+
+
    random_name_part_1 = [
        'texas_',
        'new_york_',
@@ -963,10 +1089,12 @@ def make_random_name_string():
        'event_center',
        'platform',
    ]
- 
+
+
    super_name = f"{random.choice(random_name_part_1)}{random.choice(random_name_part_2)}{random.choice(random_name_part_3)}"
     return super_name
- 
+
+
 make_random_name_string()
 
 ```
@@ -979,51 +1107,107 @@ item count -> Totals by type:
 Sometime you will have a dataframe where each row is some item,
 but you need a dataset where each category is a row with totals as columns
 in that category.
- 
+
+
 Here is working code to do that (on the fly) in python.
- 
+
+
 Create a new dataframe in which the rows are states
 and there is a column for total values.
- 
+
+
 e.g. total number of EV charging stations per state
- 
+
+
 """
- 
+
+
 import pandas as pd
- 
+
+
 # open original df
 df = pd.read_csv("NAME.csv")
- 
+
+
 # make a list_of_catagorical_items
 list_of_catagorical_items = df["XXX"].unique()
- 
+
+
 # create new blank df_item_counts
 df_item_counts = pd.DataFrame()
- 
+
+
 # iterate through list_of_catagorical_items
 for i in list_of_catagorical_items:
    # get name (initials) of catagorical_item
    count_by_this = i
- 
+
+
    # get number of items in the column
    # conditions will vary case by case...
    count_of_items = df[ (df["XXX"] == count_by_this) & (df["XXX Code"] == "XXX") ].shape[0]
- 
+
+
    # make new row
    df_item_counts = df_item_counts.append({'XXX':i}, ignore_index=True)
- 
+
+
    # update/ change row label to be the same a certain
    df.loc[len(df)] = df_item_counts["XXX"]
- 
+
+
    # save those data
    df_item_counts.loc[count_by_this, "count"] = count_of_items
- 
- 
+
+
+
+
 # save csv
 df_item_counts.to_csv('NAME.csv', index=False)
- 
+
+
 # print header)
 print( df_item_counts.head(5) )
+
+```
+
+
+# get just python version 
+
+```
+import platform
+
+
+# Retrieve Python version
+python_version = platform.python_version()
+python_version = python_version[:4]
+
+```
+
+# manual error traceback
+
+```
+import sys
+import traceback
+
+
+try:
+	print("hello whirld")
+
+
+except Exception as e:
+e = str(e)
+
+
+# get manual traceback, not relying on other forms of traceback that may fail:
+e_type, e_value, e_traceback = sys.exc_info()
+traceback_message = traceback.format_exception(e_type, e_value, e_traceback)
+traceback_message = "".join(traceback_message)
+
+
+message = f"ERROR during pip install: {e} + {traceback_message}"
+print( message )
+return message
 
 ```
 
