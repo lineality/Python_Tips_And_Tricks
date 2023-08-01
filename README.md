@@ -4,7 +4,6 @@ Quick Guide to Useful Python Items
 ###:
 Python can be in some ways combined with R and with C:
 - https://github.com/lineality/run_R_in_Python
-- 
 
 
 ## Example Sandbox Colab 
