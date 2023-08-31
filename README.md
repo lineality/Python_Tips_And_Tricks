@@ -1214,31 +1214,26 @@ return message
 
 # remove one list from another
 ```
-from_this = [1, 2, 3]
-remove_this = [2, 3]
-list_c = []
-
-
+from_this = [8, 2, 4, 3]
+remove_this = [2, 4]
+clean_list = []
 
 
 def remove_this_list_from_this_list(remove_this, from_this):
-try:
-for i in from_this:
-if i in remove_this:
-pass
-else:
-list_c.append(i)
-debug_message("list cleaned ok!")
-return list_c
-except Exception as e:
-debug_message(str(e), "remove_this_list_from_this_list(), error, nothing done, original list returned")
-return from_this
+    try:
+        clean_list = []
+        for i in from_this:
+            if i in remove_this:
+                pass
+            else:
+                clean_list.append(i)
+        print("list cleaned ok!")
+        return clean_list
+    except Exception as e:
+        print(str(e), "remove_this_list_from_this_list(), error, nothing done, original list returned")
+        return from_this
 
 
-
-
-list_c = remove_this_list_from_this_list(remove_this, from_this)
-list_c
-
-
+clean_list = remove_this_list_from_this_list(remove_this, from_this)
+clean_list
 ```
