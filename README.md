@@ -4,6 +4,7 @@ Quick Guide to Useful Python Items
 ###:
 Python can be in some ways combined with R and with C:
 - https://github.com/lineality/run_R_in_Python
+- 
 
 
 ## Example Sandbox Colab 
@@ -1210,3 +1211,34 @@ return message
 
 ```
 
+
+# remove one list from another
+```
+from_this = [1, 2, 3]
+remove_this = [2, 3]
+list_c = []
+
+
+
+
+def remove_this_list_from_this_list(remove_this, from_this):
+try:
+for i in from_this:
+if i in remove_this:
+pass
+else:
+list_c.append(i)
+debug_message("list cleaned ok!")
+return list_c
+except Exception as e:
+debug_message(str(e), "remove_this_list_from_this_list(), error, nothing done, original list returned")
+return from_this
+
+
+
+
+list_c = remove_this_list_from_this_list(remove_this, from_this)
+list_c
+
+
+```
