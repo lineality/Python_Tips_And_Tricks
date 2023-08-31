@@ -1230,7 +1230,11 @@ def remove_this_list_from_this_list(remove_this, from_this):
         print("list cleaned ok!")
         return clean_list
     except Exception as e:
-        print(str(e), "remove_this_list_from_this_list(), error, nothing done, original list returned")
+        message = """remove_this_list_from_this_list(), 
+        error, nothing done, 
+        original list returned"""
+        
+        print(message, str(e))
         return from_this
 
 
