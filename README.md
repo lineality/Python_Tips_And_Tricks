@@ -1229,6 +1229,8 @@ def remove_this_list_from_this_list(remove_this, from_this):
                 clean_list.append(i)
         print("list cleaned ok!")
         return clean_list
+
+
     except Exception as e:
         message = """remove_this_list_from_this_list(), 
         error, nothing done, 
@@ -1240,4 +1242,31 @@ def remove_this_list_from_this_list(remove_this, from_this):
 
 clean_list = remove_this_list_from_this_list(remove_this, from_this)
 clean_list
+```
+
+
+
+
+
+# remove indent-caused spaces from mutli-line python string
+```
+def remove_indentation(text):
+    # Split the text into lines
+    lines = text.split('\n')
+
+    # Find the minimum number of leading spaces in non-empty lines
+    min_indentation = float('inf')
+    for line in lines:
+        if line.strip():  # Check if the line is not empty after stripping
+            leading_spaces = len(line) - len(line.lstrip())
+            min_indentation = min(min_indentation, leading_spaces)
+
+    # Remove the minimum number of spaces from the beginning of each line
+    adjusted_lines = [line[min_indentation:] for line in lines]
+
+    # Join the adjusted lines back into a single string
+    adjusted_text = '\n'.join(adjusted_lines)
+
+    return adjusted_text
+
 ```
