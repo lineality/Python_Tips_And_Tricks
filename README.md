@@ -476,6 +476,9 @@ print(unix_time_miliseconds)
 print(type(unix_time_miliseconds))
 
 
+Time_Stamp_Mili = unix_time_miliseconds
+
+
 Time_Stamp = Posix_UTC
 
 
@@ -497,7 +500,6 @@ except:
    print(type(date_time))
 
 
-Time_Stamp_Mili = unix_time_miliseconds
 
 
 
@@ -527,7 +529,12 @@ from datetime import datetime
 date_time = datetime.utcnow()
 date_time.strftime('%Y_%m_%d_%H_%M_%S')
 ```
+## sample Readable-date-string 2
+```
+from datetime import datatime as dt
+timestamp = dt.strftime('%Y_%m_%d_%H_%M_%S_%f')
 
+```
 
 ```
 from datetime import datetime
@@ -1270,3 +1277,11 @@ def remove_indentation(text):
     return adjusted_text
 
 ```
+
+# A cli one-liner to inspect a csv file row
+```
+python -c "import csv; print(repr([row for i, row in enumerate(csv.reader(open('YOUR_FILE_NAME'.csv', 'r'))) if i == 76][0]))"
+```
+
+
+
