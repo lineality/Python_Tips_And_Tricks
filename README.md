@@ -531,8 +531,9 @@ date_time.strftime('%Y_%m_%d_%H_%M_%S')
 ```
 ## sample Readable-date-string 2
 ```
-from datetime import datatime as dt
-timestamp = dt.strftime('%Y_%m_%d_%H_%M_%S_%f')
+from datetime import datetime as dt
+date_time = dt.utcnow()
+timestamp = date_time.strftime('%Y_%m_%d_%H_%M_%S_%f')
 
 ```
 
