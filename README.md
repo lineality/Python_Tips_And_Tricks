@@ -1326,10 +1326,10 @@ sample_str = """
 result = detect_non_ascii(sample_str)
 
 result
-
 ```
 
 # removing letters and numbers from a string
+```python
 
 
 import string
@@ -1393,11 +1393,11 @@ def strip_non_alphanumerics_regex(text):
 
 
 
-
+```
 
 
 # check and make folder name
-```
+```python
 # Check if the directory already exists, if not: make it
 if not os.path.exists(path):
     # Create the directory
