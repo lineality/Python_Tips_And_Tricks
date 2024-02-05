@@ -1286,3 +1286,124 @@ python -c "import csv; print(repr([row for i, row in enumerate(csv.reader(open('
 
 
 
+# check for non-ascii characters
+```
+# helper function to detect non-ascii characters
+def detect_non_ascii(input_str):
+    """
+    Detects and reports the positions of non-ASCII characters in a string.
+
+    Args:
+        input_str (str): The string to be checked for non-ASCII characters.
+
+    Returns:
+        list: A list of tuples containing the index and the character that is non-ASCII.
+    """
+    non_ascii_list = []
+
+    # Iterate through the input string to find non-ASCII characters
+    for idx, char in enumerate(input_str):
+        # ASCII characters have a code point between 0 and 127
+        if ord(char) > 127:
+            non_ascii_list.append((idx, char))
+
+
+    # plain English
+    if not non_ascii_list:
+        print(f"OK! characters are all ascii-compatible: {non_ascii_list}")
+    else:
+        print(f'WARNING, contains these non-ascii characters: {non_ascii_list}')
+
+    return non_ascii_list
+
+# Sample input string
+
+sample_str = """
+
+"""
+
+# RUN CODE: Detect non-ASCII characters
+result = detect_non_ascii(sample_str)
+
+result
+
+```
+
+# removing letters and numbers from a string
+
+
+import string
+
+
+def strip_non_alphanumerics(text):
+   """
+   Strip all non-alphanumeric characters from a string.
+
+
+   Args:
+     text: The string to strip.
+
+
+   Returns:
+     The stripped string.
+   """
+
+
+   # Create a translation table that maps all non-alphanumeric characters to None.
+   translation_table = str.maketrans('', '', string.punctuation + string.whitespace)
+
+
+   # Use the translation table to strip the non-alphanumeric characters from the string.
+   stripped_text = text.translate(translation_table)
+
+
+   return stripped_text
+
+
+
+
+text = "Hello, world!"
+stripped_text = strip_non_alphanumerics(text)
+print(stripped_text)  # Output: "Hello world"
+
+
+import re
+
+
+def strip_non_alphanumerics_regex(text):
+   """
+   Strip all non-alphanumeric characters from a string using regular expression.
+
+
+   Args:
+     text: The string to strip.
+
+
+   Returns:
+     The stripped string.
+   """
+
+
+   pattern = re.compile("[^a-zA-Z0-9]")
+   stripped_text = pattern.sub('', text)
+   return stripped_text
+
+
+
+
+
+
+
+
+
+# check and make folder name
+```
+# Check if the directory already exists, if not: make it
+if not os.path.exists(path):
+    # Create the directory
+    os.makedirs(path)
+    print(f"Directory '{spath}' created successfully!")
+else:
+    print(f"Directory '{path}' already exists.")
+
+```
