@@ -1407,3 +1407,35 @@ else:
     print(f"Directory '{path}' already exists.")
 
 ```
+
+
+# Traceback in try except
+
+```python
+import traceback
+
+
+def SAMPE_DUMMY_FUNCTION(x, y):
+   # makes error by divide by zero
+   try:
+       result = x / y
+       return result
+   except Exception as e:
+       # Print the traceback
+       traceback_message = f"""
+       Traceback for Error:
+       Exception as e: {str(e)}
+       Traceback_message: {traceback.format_exc()}
+       """
+       # # return traceback_message
+       # # display formats may vary, alternate versions
+       # return traceback_message
+       return "Error/Exception Traceback Data: e, traceback -> ", e, traceback.format_exc()
+
+
+
+
+print( SAMPE_DUMMY_FUNCTION(1,0) )
+
+
+```
