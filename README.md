@@ -409,13 +409,10 @@ decimal_type_truncated(0.6, 2)
 # Convert a datetime.date object to a datetime.datetime object
 from datetime import date, datetime
 
-
 just_a_date = date.today()
-
 
 # inspection
 print(just_a_date)
-
 
 converted_to_datetime = datetime.combine( just_a_date, datetime.min.time())
 # inspection
@@ -450,16 +447,22 @@ print(type(Sample_Time))
 
 
 # Current Time UTC
+# from datetime import datetime, UTC
+date_time = datetime.now(UTC)
 
 
-date_time = datetime.utcnow()
 print("\nCurrent Time UTC")
 print(date_time)
 print(type(date_time))
 
 
 # Posix UTC Seconds
-date_time = datetime.utcnow()
+# make readable time
+# from datetime import datetime, UTC
+date_time = datetime.now(UTC)
+clean_timestamp = date_time.strftime('%Y%m%d%H%M%S%f')
+
+
 Posix_UTC = calendar.timegm(date_time.utctimetuple())
 print("\nPosix UTC")
 print(Posix_UTC)
@@ -469,7 +472,8 @@ print(type(Posix_UTC))
 
 
 # Posix UTC miliseconds
-date = datetime.utcnow()
+from datetime import datetime, UTC
+date = datetime.now(UTC)
 unix_time_miliseconds = datetime.timestamp(date)*1000
 print("\nPosix UTC miliseconds")
 print(unix_time_miliseconds)
@@ -525,24 +529,30 @@ except:
 
 ## sample Readable-date-string
 ```
-from datetime import datetime
-date_time = datetime.utcnow()
+# from datetime import datetime, UTC
+date_time = datetime.now(UTC)
+
+
 date_time.strftime('%Y_%m_%d_%H_%M_%S')
 ```
 ## sample Readable-date-string 2
 ```
-from datetime import datetime as dt
-date_time = dt.utcnow()
+# from datetime import datetime, UTC
+date_time = datetime.now(UTC)
+clean_timestamp = date_time.strftime('%Y%m%d%H%M%S%f')
 timestamp = date_time.strftime('%Y_%m_%d_%H_%M_%S_%f')
 
 ```
 
 ```
-from datetime import datetime
+from datetime import datetime, UTC
 
 
 # get time
-Sample_Time = datetime.utcnow()
+from datetime import datetime, UTC
+Sample_Time = datetime.now(UTC)
+
+
 
 
 # make readable string
@@ -556,11 +566,14 @@ print(readable_string)
 ## or
 ```
 import datetime, calendar, time
-from datetime import date, datetime
+from datetime import date, datetime, UTC
 
 
 # get time
-Sample_Time = datetime.utcnow()
+# from datetime import datetime, UTC
+date_time = datetime.now(UTC)
+
+
 
 
 # make readable string
@@ -572,7 +585,14 @@ print(readable_string)
 
 ```
 
+# timestamp for file names readable
+```python
+# from datetime import datetime, UTC
+date_time = datetime.now(UTC)
+clean_timestamp = date_time.strftime('%Y%m%d%H%M%S%f')
 
+timestamp = date_time.strftime('%Y_%m_%d__%Hh_%Mm_%Ss__%ffs')
+```
 
 ## Recreate a pipenv from a pipenv-lock file
 
@@ -704,10 +724,17 @@ print("Done!")
 import datetime, calendar, time
 from datetime import date, datetime
 from google.colab import files
+# from datetime import datetime, UTC
+date_time = datetime.now(UTC)
+clean_timestamp = date_time.strftime('%Y%m%d%H%M%S%f')
+
+
+
+
 
 
 # get time (stamp)
-Sample_Time = datetime.utcnow()
+Sample_Time = datetime.now(UTC)
 
 
 # make timestamp text (string)
@@ -1436,6 +1463,5 @@ def SAMPE_DUMMY_FUNCTION(x, y):
 
 
 print( SAMPE_DUMMY_FUNCTION(1,0) )
-
 
 ```
