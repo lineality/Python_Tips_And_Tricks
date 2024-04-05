@@ -1,4 +1,4 @@
-t# Python_Tips_And_Tricks
+# Python_Tips_And_Tricks
 Quick Guide to Useful Python Items
 
 ###:
