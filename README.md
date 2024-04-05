@@ -1,4 +1,4 @@
-# Python_Tips_And_Tricks
+t# Python_Tips_And_Tricks
 Quick Guide to Useful Python Items
 
 ###:
@@ -1465,3 +1465,199 @@ def SAMPE_DUMMY_FUNCTION(x, y):
 print( SAMPE_DUMMY_FUNCTION(1,0) )
 
 ```
+
+
+# timer
+```python
+import time
+from datetime import datetime, timedelta
+
+
+
+
+# helper function: start timer for python script
+def start_timer():
+   """
+   requires:
+       import time
+       from datetime import datetime
+   """
+   # get time
+   sample_time = datetime.utcnow()
+   # make readable string
+   readable_timesatamp = sample_time.strftime('%Y-%m-%d %H:%M:%S')
+
+
+   # Calculate time in different time zones
+   readable_timestamp_est = (sample_time - timedelta(hours=5)).strftime('%Y-%m-%d %H:%M:%S')
+   readable_timestamp_edt = (sample_time - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')
+
+
+   readable_timestamp_mst = (sample_time - timedelta(hours=7)).strftime('%Y-%m-%d %H:%M:%S')
+   readable_timestamp_mdt = (sample_time - timedelta(hours=6)).strftime('%Y-%m-%d %H:%M:%S')
+
+
+   readable_timestamp_pst = (sample_time - timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
+   readable_timestamp_pdt = (sample_time - timedelta(hours=9)).strftime('%Y-%m-%d %H:%M:%S')
+
+
+   time_message = f"""
+   Starting Time:
+       UTC {readable_timesatamp}
+
+
+       EST {readable_timestamp_est}
+       EDT {readable_timestamp_edt}
+
+
+       MST {readable_timestamp_mst}
+       MDT {readable_timestamp_mdt}
+
+
+       PST {readable_timestamp_pst}
+       PDT {readable_timestamp_pdt}
+
+
+   """
+   print(time_message)
+
+
+   start_stamp = time.time()
+   return start_stamp
+
+
+
+
+# helper function: finish timer for python script
+def end_timer(start_time):
+   """
+   requires:
+       import time
+       start_time = time.time()
+   """
+   # get time
+   sample_time = datetime.utcnow()
+   # make readable string
+   readable_timesatamp = sample_time.strftime('%Y-%m-%d %H:%M:%S')
+
+
+   # Calculate time in different time zones
+   readable_timestamp_est = (sample_time - timedelta(hours=5)).strftime('%Y-%m-%d %H:%M:%S')
+   readable_timestamp_edt = (sample_time - timedelta(hours=4)).strftime('%Y-%m-%d %H:%M:%S')
+
+
+   readable_timestamp_mst = (sample_time - timedelta(hours=7)).strftime('%Y-%m-%d %H:%M:%S')
+   readable_timestamp_mdt = (sample_time - timedelta(hours=6)).strftime('%Y-%m-%d %H:%M:%S')
+
+
+   readable_timestamp_pst = (sample_time - timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
+   readable_timestamp_pdt = (sample_time - timedelta(hours=9)).strftime('%Y-%m-%d %H:%M:%S')
+
+
+   time_message = f"""
+   Finish Time:
+       UTC {readable_timesatamp}
+
+
+       EST {readable_timestamp_est}
+       EDT {readable_timestamp_edt}
+
+
+       MST {readable_timestamp_mst}
+       MDT {readable_timestamp_mdt}
+
+
+       PST {readable_timestamp_pst}
+       PDT {readable_timestamp_pdt}
+   """
+   print(time_message)
+
+
+
+
+
+
+   MARS_TO_EARTH = 1.02749125104
+
+
+   # Record the end time
+   end_time = time.time()
+   # Calculate the elapsed time
+   elapsed_time = end_time - start_time
+   # Print the elapsed time in seconds
+
+
+
+
+   count = elapsed_time
+   total_mars_tenths = count * MARS_TO_EARTH
+   total_mars_secs = total_mars_tenths // 10
+   total_mars_mins = total_mars_secs // 60
+
+
+   time_message = f"""
+   Elapsed time:
+       posix epoch time: {elapsed_time} seconds
+       Earth Time Total: {count//600} min {count%600/10:.1f} sec, Mars Time Total: {total_mars_mins:.0f} min {total_mars_secs%60 + total_mars_tenths%10 / 10:.1f} sec
+
+
+   """
+   print(time_message)
+
+
+
+
+
+
+# Timer: For Start of Script
+start_the_timer = start_timer()
+
+
+# ... Python script goes here...
+time.sleep(2)  # This will pause the script for 5 seconds
+
+
+# Timer: For End of Script
+end_timer(start_the_timer)
+
+```
+
+
+# min sec duration 
+
+```python[
+from datetime import datetime
+
+start_time_whole_single_task = datetime.now()
+end_time_whole_single_task = datetime.now()
+                    
+    
+def duration_min_sec(start_time, end_time):
+
+    duration = end_time - start_time
+
+    duration_seconds = duration.total_seconds()
+
+    minutes = int(duration_seconds // 60)
+    seconds = duration_seconds % 60
+    time_message = f"{minutes}_min__{seconds:.1f}_sec"
+
+    return time_message
+
+duration_min_sec(start_time_whole_single_task, end_time_whole_single_task)
+
+```
+
+
+
+#  make sure directory exists, if not, make it
+
+```python
+    # Split the file path into directory and filename
+    directory, filename = os.path.split(file_path)
+
+    # Check if the directory exists, and create it if it doesn't
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+```
+
