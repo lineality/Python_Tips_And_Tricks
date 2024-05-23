@@ -1661,3 +1661,28 @@ duration_min_sec(start_time_whole_single_task, end_time_whole_single_task)
         os.makedirs(directory)
 ```
 
+# check if valid as object-id (bson)
+```python
+# helper function
+def is_valid_object_id(input_string):
+   """
+   uses from bson import ObjectId
+   """
+   try:
+       if ObjectId.is_valid(input_string):
+           print(f"{input_string} is a valid ObjectId")
+           return True
+       else:
+           print(f"{input_string} is not a valid ObjectId")
+           return False
+   except Exception as e:
+       # inspection
+       print(str(e))
+       return False
+```
+
+#
+
+```python
+```
+
