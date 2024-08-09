@@ -1681,8 +1681,446 @@ def is_valid_object_id(input_string):
        return False
 ```
 
-#
-
+# Remove fields from a dictionary
 ```python
+# helper function
+def remove_fields_from_dict_list(dict_list, field_list):
+    """
+    removes each of a list of keys
+    from each of a list of dictionaries
+    """
+    try:
+        for this_field in field_list:
+            for this_dict in dict_list:
+                if this_field in this_dict:
+                    del this_dict[this_field]
+        return dict_list
+    except Exception as e:
+        raise e
+
 ```
 
+
+
+
+#####################
+# Print & Log (prep)
+#####################
+def print_and_log(input_string):
+   if DEBUG_PRINT is True:
+       print(str(input_string))
+
+
+       # log(input_string)
+
+
+
+
+def check_if_user_in_organization(user_id_from_jwt, organization_id):
+   """
+   The user_organiziations collection has a key that is the user_id
+   and organization_id values in an array of organization_id values.
+
+
+   check if this user (based on jwt) has the stated organization_id in their list.
+   """
+   """Standard use:
+               ################################
+               # Check Organization Membership
+               ################################
+               # by default, the parent-owner of the role is the user
+               # unless specified within a larger organization
+               if (organization_id is None) or (str(organization_id) == str(user_id_from_jwt)):
+                   print_and_log(f"organization_id is None -> {organization_id} {type(organization_id)}")
+                   organization_id = user_id_from_jwt
+
+
+               else:  # if there is an org id, check if the current user really has that:
+                   memebership_status = check_if_user_in_organization(user_id_from_jwt, organization_id)
+                   print_and_log(f"memebership_status = {memebership_status} {type(memebership_status)}")
+
+
+                   if memebership_status is not True:
+                       print_and_log(f"memebership_status is not True; memebership_status -> {memebership_status}")
+                       message_text = {
+                           'stdout': {
+                               'message': "",
+                           },
+
+
+                           "stderr": {
+                               "error_message": f"Failed: memebership_status",
+                               "error_details": f"Failed: current user does not have membership in that organization (hiring)",
+                           }
+                       }
+                       status_code = 500
+                       return message_text, status_code
+               ######################################
+               # Check Organization Membership Block
+               ######################################
+
+
+   """
+   try:
+
+
+       # lookup target_user_id in lookup table, to get their array of organizations of which they are a member:
+       current_organizations = mongo_db.get_all_values_if_key_found_or_none_from_db('hiring_accelerator', 'user_organizations', str(user_id_from_jwt))
+
+
+       # if there are any:
+       if current_organizations:
+           """
+           If there is data, see if organization_id is in the array
+           which would indicate that this jwt-user is a member of that organization
+           """
+
+
+           print_and_log(f"check_if_user_in_organization() current_organizations {current_organizations} {type(current_organizations)}")
+           print_and_log(f"current_organizations[0] {current_organizations[0]} {type(current_organizations[0])}")
+
+
+           if str(organization_id) in current_organizations:
+               print_and_log(f"{organization_id} found: Member OK!")
+               # if in list
+               return True
+
+
+           else:
+               print_and_log(f"NOT {organization_id} found: NOT member")
+               # if not in list
+               return False
+
+
+       else:
+           print_and_log("current_organizations is None")
+
+
+           """
+           If that user has no organization array, exit
+           """
+           return False
+
+
+   except Exception as e:
+       print_and_log(f"Exception failed dict_list_obj_to_string() {str(e)}")
+       raise e
+
+
+
+
+def dict_obj_to_string(this_dict):
+   """
+   requires from bson import ObjectId
+
+
+   Converts ObjectId values in a dictionary to strings
+   and manages lists.
+   Converts ObjectId values in a dictionary to strings.
+   """
+   if not isinstance(this_dict, dict):
+       raise Exception("input is not  a dictionary")
+
+
+   try:
+       if this_dict:
+           for key, value in this_dict.items():
+               if isinstance(value, dict):
+                   this_dict[key] = dict_obj_to_string(value)
+               elif isinstance(value, list):
+                   for i, item in enumerate(value):
+                       if isinstance(item, ObjectId):
+                           value[i] = str(item)
+               elif isinstance(value, ObjectId):
+                   this_dict[key] = str(value)
+           return this_dict
+       else:
+           print_and_log("dict_list_obj_to_string(), None entered as dict")
+           return None
+   except Exception as e:
+       print_and_log(f"Exception failed dict_list_obj_to_string() {str(e)}")
+       raise e
+
+
+
+
+def enforce_value_is_list(input_dict):
+   try:
+       # Iterate over each key-value pair in the dictionary
+       for key, value in input_dict.items():
+           # Check if the value is not a list
+           if not isinstance(value, list):
+               # If the value is not a list, convert it into a list with a single element
+               input_dict[key] = [value]
+       # Return the modified dictionary
+       return input_dict
+   except Exception as e:
+       print_and_log(f"Exception enforce_value_is_list() {str(e)}")
+       raise e
+
+
+
+
+# helper function
+def read_after_tag(input_string, tag):
+   """
+   read document/string until the specified tag
+   then return the text up to but not after that tag
+   """
+   try:
+       get_this_string = ''
+       tag_found_flag = False
+
+
+       # iterate through list of lines in string
+       list_of_lines = input_string.split('\n')
+       for this_line in list_of_lines:
+
+
+           if tag_found_flag:
+               # add line to record: get_this_string
+               get_this_string += this_line
+               get_this_string += '\n'
+
+
+           # get tag after storing it
+           if tag in this_line:
+               tag_found_flag = True
+
+
+       return get_this_string
+   except Exception as e:
+
+
+       if DEBUG_PRINT:
+           raise e
+
+
+       print_and_log(f"Exception read_until_tag {str(e)}")
+       return input_string
+
+
+
+
+def check_keys(input_dictionary, required_keys):
+   """
+   return False by default if exception thrown
+   """
+   try:
+       print_and_log(input_dictionary.keys())
+       return set(input_dictionary.keys()) == set(required_keys)
+
+
+   except Exception as e:
+       e = str(e)
+       return False
+
+
+
+
+def merge_remove_duplicates_listdict(dict_of_lists, add_to_this_list, list_to_add):
+   try:
+       # Add the list to the dictionary's list
+       dict_of_lists[add_to_this_list] += dict_of_lists[list_to_add]
+
+
+       # Remove duplicates by converting the list to a set and then back to a list
+       dict_of_lists[add_to_this_list] = list(set(dict_of_lists[add_to_this_list]))
+
+
+       return dict_of_lists
+   except Exception as e:
+       raise e
+
+
+
+
+def merge_dict_lists(d1, d2):
+   """
+   merges two versions of dictionary
+   keeping all unique values
+   but no duplicates
+   """
+   try:
+       # Create a new dictionary to store the merged result
+       new_d = {}
+
+
+       # Iterate over the keys in the first dictionary
+       for key in d1.keys():
+           # If the key is also in the second dictionary
+           if key in d2:
+               # If the values are lists, remove duplicates and merge them
+               if isinstance(d1[key], list) and isinstance(d2[key], list):
+                   new_d[key] = list(set(d1[key] + d2[key]))
+               # If the values are strings, keep them as is (no duplicates to remove)
+               elif isinstance(d1[key], str) and isinstance(d2[key], str):
+                   new_d[key] = d1[key]
+               # If the values are of different types, raise an error
+               else:
+                   raise ValueError(f"Values for key '{key}' are of different types in the input dictionaries.")
+           # If the key is only in the first dictionary, add it to the new dictionary
+           else:
+               new_d[key] = d1[key]
+
+
+       # Iterate over the keys in the second dictionary
+       for key in d2.keys():
+           # If the key is not already in the new dictionary, add it
+           if key not in new_d:
+               new_d[key] = d2[key]
+
+
+       # Return the merged dictionary
+       return new_d
+   except Exception as e:
+       # If any error occurs, raise it
+       raise e
+
+
+
+
+# remove indent-caused spaces from mutli-line python string
+def remove_indentation(text):
+   try:
+       # Split the text into lines
+       lines = text.split('\n')
+
+
+       # Find the minimum number of leading spaces in non-empty lines
+       min_indentation = float('inf')
+       for line in lines:
+           if line.strip():  # Check if the line is not empty after stripping
+               leading_spaces = len(line) - len(line.lstrip())
+               min_indentation = min(min_indentation, leading_spaces)
+
+
+       # Remove the minimum number of spaces from the beginning of each line
+       adjusted_lines = [line[min_indentation:] for line in lines]
+
+
+       # Join the adjusted lines back into a single string
+       adjusted_text = '\n'.join(adjusted_lines)
+
+
+       return adjusted_text
+
+
+   except Exception as e:
+       raise e
+
+
+
+
+def try_jsonify_to_dict(input_text):
+   import json
+   try:
+       # Remove the leading and trailing "```json\n" and "\n```"
+       input_text = input_text.strip("```json\n")
+
+
+       # Parse the JSON string into a Python dictionary
+       dict_data = json.loads(input_text)
+
+
+       # Convert the Python dictionary back into a JSON string
+       json_string = json.dumps(dict_data)
+
+
+       print_and_log(json_string)
+
+
+       return dict_data
+
+
+   except Exception as e:
+       e = str(e)
+       return None
+
+
+
+
+# Helper function for cleaning
+def convert_dict_to_lower(dictionary):
+   """
+   """
+   try:
+       return {k.lower(): [v.lower() for v in value] if isinstance(value, list) else value.lower() for k, value in dictionary.items()}
+   except Exception as e:
+       raise e
+
+
+
+
+# Helper function for cleaning
+def replace_apostrophe_s(dictionary):
+   """
+   This function takes a dictionary as input and returns a new dictionary
+   where all keys and values have "'s" replaced with "s".
+   If a value is a list, each item in the list has "'s" replaced with "s".
+   If a value is None, it is left as None.
+   """
+   try:
+       return {k.replace("'s", "s"): [v.replace("'s", "s") for v in value] if isinstance(value, list) else value.replace("'s", "s") if value is not None else None for k, value in dictionary.items()}
+   except Exception as e:
+       raise e
+
+
+
+
+# Helper function
+def extract_unique_field_values(dict_list, key):
+   """
+   Extract unique values for a specific key from a list of dictionaries.
+
+
+   :param dict_list: List of dictionaries
+   :param key: The key to extract values for
+   :return: A list of unique values for the specified key
+   """
+   unique_values = set()
+
+
+   for d in dict_list:
+       value = d.get(key)
+       if value is not None:
+           unique_values.add(value)
+
+
+   return list(unique_values)
+
+
+
+
+# helper function
+def remove_fields_from_dict_list(dict_list, field_list):
+   """
+   removes each of a list of keys
+   from each of a list of dictionaries
+   """
+   try:
+       for this_field in field_list:
+           for this_dict in dict_list:
+               if this_field in this_dict:
+                   del this_dict[this_field]
+       return dict_list
+   except Exception as e:
+       raise e
+
+
+
+
+
+# import traceback
+
+```python
+import traceback
+
+try:
+
+
+except Exception as e:
+    print(f"EXCEPTION: {str(e)}")
+    print(traceback.format_exc())  # This will print the stack trace
+    raise e
+```
