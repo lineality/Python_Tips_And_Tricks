@@ -2115,12 +2115,23 @@ def remove_fields_from_dict_list(dict_list, field_list):
 
 ```python
 import traceback
+DEBUG_PRINT = True
+def print_and_log(input_string):
+    if DEBUG_PRINT is True:
+        print(str(input_string))
+
 
 try:
 
-
 except Exception as e:
-    print(f"EXCEPTION: {str(e)}")
-    print(traceback.format_exc())  # This will print the stack trace
+    print_and_log(f"EXCEPTION: {str(e)}")
+    print_and_log(traceback.format_exc())  # This will print the stack trace
     raise e
+```
+
+# check for any 2nn status code: 200, 201 etc.
+```python
+# check for any 2nn status code
+if status_code // 100 == 2:
+    pass  # code here
 ```
