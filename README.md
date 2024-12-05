@@ -2135,3 +2135,423 @@ except Exception as e:
 if status_code // 100 == 2:
     pass  # code here
 ```
+
+
+# XOR OTP Encrypt or Decrypt
+```python
+import random
+import string
+
+
+
+
+
+
+def xor_otp_encrypt_decrypt(text, key=None, seed=None):
+   """
+   Encrypts or decrypts a given text
+   using a one-time pad (OTP) with either a provided key or seed.
+
+
+   Args:
+   text (str): The input text to be encrypted or decrypted.
+
+
+   key (str, optional): The key to be used for encryption or decryption.
+                        Must be at least as long as the text.
+
+
+   seed (int, optional): The seed to be used for random key generation.
+                         If key is not provided, a key will be generated using this seed.
+
+
+   Returns: three items:
+   str: 1. The encrypted or decrypted text
+        2. key
+        3. exit code
+
+
+   Raises:
+   ValueError: If neither key nor seed is provided,
+               or if the key is shorter than the text.
+   """
+   def generate_key(length, seed):
+       """
+       Generates a random key of a given length using a seed.
+
+
+       Args:
+       length (int): The length of the key to be generated.
+       seed (int): The seed to be used for random number generation.
+
+
+       Returns:
+       str: The generated key.
+       """
+       random.seed(seed)
+       key = ''.join(random.choice(string.ascii_letters) for i in range(length))
+       return key
+
+
+
+
+   # If key is not provided, generate a key using the seed
+   if key is None:
+       if seed is None:
+           return "Failed: Either key or seed must be provided.", None, 1
+       key = generate_key(len(text), seed)
+
+
+   # Check if the key is long enough
+   if len(key) < len(text):
+       return "Failed: Key must be at least as long as the text.", None, 1
+
+
+   # Convert text and key to ASCII values
+   text_ascii = [ord(c) for c in text]
+   key_ascii = [ord(c) for c in key]
+
+
+   # Encrypt/Decrypt by XORing text and key
+   encrypted_decrypted_ascii = [t ^ k for t, k in zip(text_ascii, key_ascii)]
+
+
+   # Convert back to characters
+   encrypted_decrypted_text = ''.join(chr(c) for c in encrypted_decrypted_ascii)
+
+
+   return encrypted_decrypted_text, key, 0
+
+
+# Example usage
+text = "Hello, World!"
+seed = 12345
+key = "abcdefghijklmn!"
+
+
+# # too short key test
+# key = "1"
+
+
+# key
+encrypted_text, key, code = xor_otp_encrypt_decrypt(text, key=key)
+print("Encrypted text:", encrypted_text)
+print("Key:", key)
+print("code:", code)
+
+
+decrypted_text, key, code = xor_otp_encrypt_decrypt(encrypted_text, key=key)
+print("Decrypted text:", decrypted_text)
+print("Key:", key)
+print("code:", code)
+
+
+# seed
+encrypted_text, key, code = xor_otp_encrypt_decrypt(text, seed=seed)
+print("Encrypted text:", encrypted_text)
+print("Key:", key)
+print("code:", code)
+
+
+decrypted_text, key, code = xor_otp_encrypt_decrypt(encrypted_text, seed=seed)
+print("Decrypted text:", decrypted_text)
+print("Key:", key)
+print("code:", code)
+
+
+
+
+```
+
+
+
+
+
+
+
+# always ascii caesar_otp_encrypt or caesar_otp_decrypt
+```python
+
+
+
+
+
+
+def caesar_otp_encrypt(text, key=None, seed=None):
+   """
+   Encrypts a given text using a Caesar cipher
+   with a one-time pad (OTP) generated from a key or seed.
+
+
+
+
+   This implementation utilizes a Caesar cipher, where each character in the
+   plaintext is shifted forward in the ASCII table by a value determined by
+   the corresponding character in the key. The key is either provided directly
+   or generated randomly using a seed.
+
+
+   To guarantee that the encrypted output contains only printable ASCII
+   characters (characters with ASCII codes between 32 and 126, inclusive),
+   the following steps are taken:
+
+
+   1. Both the plaintext character and the corresponding key character are
+      converted to their ASCII ordinal values.
+   2. The value 32 (representing the space character, the first printable
+      ASCII character) is subtracted from both ordinal values.
+   3. The adjusted ordinal values are added together, and the result is
+      taken modulo 95 (the number of printable ASCII characters).
+   4. The value 32 is added back to the result to bring it back into the
+      printable ASCII range.
+   5. The final value is converted back to a character and appended to the
+      encrypted text.
+
+
+   This process ensures that the encrypted text will always consist of
+   printable ASCII characters, making it safe for display and transmission
+   without concerns about control characters or non-printable characters.
+
+
+   Args:
+   text (str): The input text to be encrypted.
+   key (str, optional): The key to be used for encryption.
+                        Must be at least as long as the text.
+   seed (str or int, optional): The seed to be used for random key generation.
+                         If key is not provided, a key will be generated using this seed.
+
+
+   Returns:
+   tuple: (encrypted_text, key, exit_code)
+          encrypted_text (str): The encrypted text.
+          key (str): The key used for encryption.
+          exit_code (int): 0 for success, 1 for failure.
+
+
+   Raises:
+   ValueError: If neither key nor seed is provided,
+               or if the key is shorter than the text.
+   """
+   try:
+       def generate_key(length, seed):
+           """
+           Generates a random key of a given length using a seed.
+
+
+           Args:
+           length (int): The length of the key to be generated.
+           seed (int): The seed to be used for random number generation.
+
+
+           Returns:
+           str: The generated key.
+           """
+           random.seed(seed)
+           key = ''.join(random.choice(string.printable) for i in range(length))
+           return key
+
+
+       if key is None:
+           if seed is None:
+               return "Failed: Either key or seed must be provided.", None, 1
+           key = generate_key(len(text), seed)
+
+
+       if len(key) < len(text):
+           return "Failed: Key must be at least as long as the text.", None, 1
+
+
+       encrypted_text = ""
+       for i in range(len(text)):
+           text_ord = ord(text[i])
+           key_ord = ord(key[i])
+           shifted_ord = 32 + (text_ord + key_ord - 32) % 95  # Ensure it stays within printable ASCII range (32-126)
+           encrypted_text += chr(shifted_ord)
+
+
+       return encrypted_text, key, 0
+
+
+   except Exception as e:
+       if DEBUG_PRINT:
+           raise e
+       return 'Exception', 'Exception', 1
+
+
+
+
+def caesar_otp_decrypt(text, key=None, seed=None):
+   """
+   Decrypts a given text that was encrypted using the caesar_otp_encrypt function.
+
+
+
+
+   This implementation utilizes a Caesar cipher, where each character in the
+   plaintext is shifted forward in the ASCII table by a value determined by
+   the corresponding character in the key. The key is either provided directly
+   or generated randomly using a seed.
+
+
+   To guarantee that the encrypted output contains only printable ASCII
+   characters (characters with ASCII codes between 32 and 126, inclusive),
+   the following steps are taken:
+
+
+   1. Both the plaintext character and the corresponding key character are
+      converted to their ASCII ordinal values.
+   2. The value 32 (representing the space character, the first printable
+      ASCII character) is subtracted from both ordinal values.
+   3. The adjusted ordinal values are added together, and the result is
+      taken modulo 95 (the number of printable ASCII characters).
+   4. The value 32 is added back to the result to bring it back into the
+      printable ASCII range.
+   5. The final value is converted back to a character and appended to the
+      encrypted text.
+
+
+   This process ensures that the encrypted text will always consist of
+   printable ASCII characters, making it safe for display and transmission
+   without concerns about control characters or non-printable characters.
+
+
+   Args:
+   text (str): The encrypted text to be decrypted.
+   key (str): The key that was used for encryption.
+
+
+   Returns:
+   tuple: (decrypted_text, exit_code)
+          decrypted_text (str): The decrypted text.
+          exit_code (int): 0 for success, 1 for failure.
+
+
+   Raises:
+   ValueError: If the key is shorter than the text.
+   """
+   try:
+       def generate_key(length, seed):
+           """
+           Generates a random key of a given length using a seed.
+
+
+           Args:
+           length (int): The length of the key to be generated.
+           seed (int): The seed to be used for random number generation.
+
+
+           Returns:
+           str: The generated key.
+           """
+           random.seed(seed)
+           key = ''.join(random.choice(string.printable) for i in range(length))
+           return key
+
+
+       if key is None:
+           if seed is None:
+               return "Failed: Either key or seed must be provided.", None, 1
+           key = generate_key(len(text), seed)
+
+
+       if len(key) < len(text):
+           return "Failed: Key must be at least as long as the text.", None, 1
+
+
+       decrypted_text = ""
+       for i in range(len(text)):
+           text_ord = ord(text[i])
+           key_ord = ord(key[i])
+           shifted_ord = 32 + (text_ord - key_ord - 32) % 95  # Reverse the shift, staying within printable ASCII
+           decrypted_text += chr(shifted_ord)
+
+
+       return decrypted_text, key, 0
+
+
+   except Exception as e:
+       if DEBUG_PRINT:
+           raise e
+       return 'Exception', 'Exception', 1
+
+
+# Example Usage
+text = "Hello, World! This is a test with all printable ASCII characters!@#$%^&*()"
+seed = "MySecretSeed"
+
+
+# Encryption with seed
+encrypted_text, key, code = caesar_otp_encrypt(text, seed=seed)
+print("Encrypted text:", encrypted_text)
+print("Key:", key)
+print("Encryption exit code:", code)
+
+
+# Decryption
+decrypted_text, key, code  = caesar_otp_decrypt(encrypted_text, key=key)
+print("Decrypted text:", decrypted_text)
+print("Decryption exit code:", code)
+
+
+
+
+```
+
+# extract dict list from dirty json markdown string
+```python
+import json
+import re
+
+
+def extract_dict_list_from_dirty_json_md_str(text):
+   """
+   Extracts and parses valid JSON dictionaries from markdown-formatted text.
+  
+   Args:
+       text (str): Input text containing markdown-formatted JSON
+      
+   Returns:
+       list: List of parsed JSON dictionaries
+  
+   Returns Empty list by default, in case of errors.
+   """
+
+
+   try:
+       # Find all content between ```json and ``` markers
+       json_pattern = r'```json\s*(.*?)\s*```'
+       json_matches = re.findall(json_pattern, text, re.DOTALL)
+   except Exception as e:
+       print(
+           #extract_clean_json_dict_list_from_dirty_markdown_string",
+           str(e),
+       )
+       # If parsing fails, skip this one and continue
+       return []
+
+
+
+
+   valid_jsons = []
+
+
+  
+   for json_str in json_matches:
+       try:
+           # Try to parse the JSON string
+           json_obj = json.loads(json_str)
+           # Only append if it's a dictionary
+           if isinstance(json_obj, dict):
+               valid_jsons.append(json_obj)
+       except Exception as e:
+           print(
+               #extract_clean_json_dict_list_from_dirty_markdown_string",
+               str(e),
+           )
+           # If parsing fails, skip this one and continue
+           continue
+          
+   return valid_jsons
+
+
+```
