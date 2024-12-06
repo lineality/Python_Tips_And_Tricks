@@ -1661,6 +1661,129 @@ duration_min_sec(start_time_whole_single_task, end_time_whole_single_task)
         os.makedirs(directory)
 ```
 
+
+# Minimal Function Timer
+```python
+import time
+from datetime import datetime, timedelta
+
+
+
+
+# helper function: start timer for python script
+def start_timer():
+  """
+  # do
+  start_time = start_timer()
+
+
+  requires:
+      import time
+      from datetime import datetime
+  """
+  # get time
+  sample_time = datetime.utcnow()
+  # make readable string
+  readable_timesatamp = sample_time.strftime('%Y-%m-%d %H:%M:%S')
+
+
+  time_message = f"""
+  Starting Time:
+      UTC {readable_timesatamp}
+  """
+  # print(time_message)
+
+
+
+
+  start_stamp = time.time()
+  return start_stamp
+
+
+
+
+# helper function: finish timer for python script
+def end_timer(start_time):
+  """
+  requires:
+      import time
+      start_time = time.time()
+  """
+  # get time
+  sample_time = datetime.utcnow()
+  # make readable string
+  readable_timesatamp = sample_time.strftime('%Y-%m-%d %H:%M:%S')
+
+
+
+
+  time_message = f"""
+  Finish Time:
+      UTC {readable_timesatamp}
+  """
+  print(time_message)
+
+
+  MARS_TO_EARTH = 1.02749125104
+
+
+
+
+  # Record the end time
+  end_time = time.time()
+  # Calculate the elapsed time
+  elapsed_time = end_time - start_time
+  # Print the elapsed time in seconds
+
+
+  count = elapsed_time
+  total_mars_tenths = count * MARS_TO_EARTH
+  total_mars_secs = total_mars_tenths
+  total_mars_mins = total_mars_secs // 60
+
+
+
+
+  time_message = f"""
+  Elapsed time:
+      posix epoch time: {elapsed_time} seconds
+      Earth Time Total: {count//600} min {count%600:.1f} sec, Mars Time Total: {total_mars_mins:.0f} min {total_mars_secs%60 + total_mars_tenths%10 / 10:.1f} sec
+
+
+
+
+  """
+  print(time_message)
+
+
+
+
+
+
+
+
+
+
+
+
+# Timer: For Start of Script
+start_the_timer = start_timer()
+
+
+
+
+# ... Python script goes here...
+time.sleep(2)  # This will pause the script for 5 seconds
+
+
+
+
+# Timer: For End of Script
+end_timer(start_the_timer)
+```
+
+
+
 # check if valid as object-id (bson)
 ```python
 # helper function
