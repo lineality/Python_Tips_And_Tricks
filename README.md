@@ -309,8 +309,24 @@ import glob
 print(glob.glob("*.txt"))
 
 
+
+
+# Get list of all text files in the directory
+list_of_files = glob.glob(os.path.join(dir_path, "*.txt"))
+
+
 ```
 
+# glob file list in cwd
+```python
+# # for directory at path
+# list_of_files = glob.glob(os.path.join(dir_path, "*.csv"))
+
+list_of_files = glob("*.csv")
+print(list_of_files)
+
+
+```
 
 
 
@@ -2677,4 +2693,89 @@ def extract_dict_list_from_dirty_json_md_str(text):
    return valid_jsons
 
 
+```
+
+
+
+# timer
+```python
+# Function-Timer Functions
+
+import time
+from datetime import datetime
+
+# helper function: start timer for python script
+def start_timer():
+   """
+   # do
+   start_time = start_timer()
+
+   requires:
+       import time
+       from datetime import datetime
+   """
+   # get time
+   sample_time = datetime.now()
+   # make readable string
+   readable_timesatamp = sample_time.strftime('%Y-%m-%d %H:%M:%S')
+
+   time_message = f"""
+   Starting Time:
+       UTC {readable_timesatamp}
+   """
+   # debug_log(time_message)
+
+
+   start_stamp = time.time()
+   return start_stamp
+
+
+# helper function: finish timer for python script
+def end_timer(start_time):
+    """
+    requires:
+       import time
+       start_time = time.time()
+    """
+    # get time
+    sample_time = datetime.now()
+    # make readable string
+    readable_timesatamp = sample_time.strftime('%Y-%m-%d %H:%M:%S')
+    
+    
+    time_message = f"""
+    Finish Time:
+       UTC {readable_timesatamp}
+    """
+    debug_log(time_message)
+    
+    # Record the end time
+    end_time = time.time()
+    # Calculate the elapsed time
+    elapsed_time = end_time - start_time
+    # Print the elapsed time in seconds
+
+    # Calculate hours, minutes, and seconds
+    hours = int(elapsed_time // 3600)
+    minutes = int((elapsed_time % 3600) // 60)
+    seconds = elapsed_time % 60
+    
+    # Format the message
+    time_message = f"""Elapsed time: total posix time: {elapsed_time} s -> {hours} hr : {minutes} min : {seconds:.6f} sec"""
+        
+    debug_log(time_message)
+    # print(time_message)
+    return time_message
+
+#######
+# Test
+#######
+# Timer: For Start of Section
+start_the_timer = start_timer()
+
+# ... Python script goes here...
+time.sleep(2)  
+
+# Timer: For End of Section
+end_timer(start_the_timer)
 ```
