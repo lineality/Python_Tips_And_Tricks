@@ -2779,3 +2779,66 @@ time.sleep(2)
 # Timer: For End of Section
 end_timer(start_the_timer)
 ```
+
+
+# native python bash ls
+```python
+import os
+
+
+def list_files_in_directory(directory="./"):
+   """
+   List files and directories in the specified directory.
+
+
+   Args:
+       directory (str): The directory to list files and directories from. Default is the current directory.
+
+
+   Returns:
+       list: A list of files and directories in the specified directory.
+   """
+   try:
+       list_to_return = []
+
+
+       # Print the current working directory
+       print(f"Current working directory -> {os.getcwd()}")
+
+
+       # Check if the specified directory exists
+       if os.path.exists(directory):
+           # Print the number of items in the directory
+           print(f"Number of items -> {len(os.listdir(directory))}")
+
+
+           # Iterate through the items in the directory
+           for item in os.listdir(directory):
+               item_path = os.path.join(directory, item)
+
+
+               # Check if the item is a file or a directory
+               if os.path.isfile(item_path):
+                   list_to_return.append((item, "file"))
+               elif os.path.isdir(item_path):
+                   list_to_return.append((item, "directory"))
+
+
+           return list_to_return
+
+
+       else:
+           return f"Error: The specified directory '{directory}' does not exist."
+
+
+   except Exception as e:
+       return f"Error, failed: error message, e -> {str(e)}"
+
+
+# Call the function and print the results
+files_and_dirs = list_files_in_directory()
+for item in files_and_dirs:
+   print(f"{item[0]} - {item[1]}")
+
+
+```
