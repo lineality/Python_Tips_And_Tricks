@@ -2786,7 +2786,7 @@ end_timer(start_the_timer)
 import os
 
 
-def list_files_in_directory(directory="./"):
+def py_ls(directory="./"):
    """
    List files and directories in the specified directory.
 
@@ -2803,7 +2803,14 @@ def list_files_in_directory(directory="./"):
 
 
        # Print the current working directory
-       print(f"Current working directory -> {os.getcwd()}")
+       this_cwd = os.getcwd()
+
+
+       # add cwd to output
+       list_to_return.append((this_cwd, "cwd"))
+
+
+       print(f"Current working directory -> {this_cwd}")
 
 
        # Check if the specified directory exists
@@ -2836,9 +2843,16 @@ def list_files_in_directory(directory="./"):
 
 
 # Call the function and print the results
-files_and_dirs = list_files_in_directory()
+files_and_dirs = py_ls()
 for item in files_and_dirs:
    print(f"{item[0]} - {item[1]}")
 
 
+print(files_and_dirs)
+
+
+
+
 ```
+
+
