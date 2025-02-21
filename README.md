@@ -435,6 +435,24 @@ converted_to_datetime = datetime.combine( just_a_date, datetime.min.time())
 print(converted_to_datetime)
 ```
 
+
+# Readable Timestamp
+# timer
+```python
+
+
+
+
+from datetime import datetime, UTC as datetime_UTC
+
+
+# get time
+sample_time = datetime.now(datetime_UTC)
+# make readable string
+readable_timesatamp = sample_time.strftime('%Y_%m_%d__%H_%M_%S%f')
+```
+
+
 # Date Time & Posix Time!
 
 https://colab.research.google.com/drive/1VHk7J2yU2s8zX7fO7VU7pZyfbogKxQlt#scrollTo=UbEzt--NLs-7
@@ -2831,6 +2849,12 @@ def py_ls(directory="./"):
                    list_to_return.append((item, "directory"))
 
 
+
+
+           for item in list_to_return:
+               print(f"{item[0]} - {item[1]}")
+
+
            return list_to_return
 
 
@@ -2842,15 +2866,13 @@ def py_ls(directory="./"):
        return f"Error, failed: error message, e -> {str(e)}"
 
 
+###########
+# test use
+###########
 # Call the function and print the results
 files_and_dirs = py_ls()
-for item in files_and_dirs:
-   print(f"{item[0]} - {item[1]}")
-
-
 print(files_and_dirs)
-
-
+print(type(files_and_dirs))
 
 
 ```
