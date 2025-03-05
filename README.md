@@ -1275,20 +1275,31 @@ def test_traceback():
    except Exception as e:
 
 
-       # get manual traceback, not relying on other forms of traceback that may fail:
+       # get manual traceback,
+       # not relying on other forms of traceback that may fail:
        e_type, e_value, e_traceback = sys.exc_info()
-       traceback_message = traceback.format_exception(e_type, e_value, e_traceback)
+       traceback_message = traceback.format_exception(
+           e_type,
+           e_value,
+           e_traceback,
+       )
        traceback_message = "".join(traceback_message)
-
-
-
-
-       message = f"Exception in test_traceback(), ERROR during pip install: {str(e)} + {traceback_message}"
+       message = f"""
+       Exception in test_traceback():
+       Error     -> {str(e)}
+       Traceback -> {traceback_message}
+       """
        print( message )
+
+
        return message
 
 
 test_traceback()
+
+
+
+
 
 
 
