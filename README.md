@@ -1260,23 +1260,37 @@ import sys
 import traceback
 
 
-try:
-	print("hello whirld")
+def test_traceback():
+   try:
+      
+       # make the oopsy
+       a = 1/0
 
 
-except Exception as e:
-e = str(e)
+       return "hello whirld"
 
 
-# get manual traceback, not relying on other forms of traceback that may fail:
-e_type, e_value, e_traceback = sys.exc_info()
-traceback_message = traceback.format_exception(e_type, e_value, e_traceback)
-traceback_message = "".join(traceback_message)
 
 
-message = f"ERROR during pip install: {e} + {traceback_message}"
-print( message )
-return message
+   except Exception as e:
+
+
+       # get manual traceback, not relying on other forms of traceback that may fail:
+       e_type, e_value, e_traceback = sys.exc_info()
+       traceback_message = traceback.format_exception(e_type, e_value, e_traceback)
+       traceback_message = "".join(traceback_message)
+
+
+
+
+       message = f"Exception in test_traceback(), ERROR during pip install: {str(e)} + {traceback_message}"
+       print( message )
+       return message
+
+
+test_traceback()
+
+
 
 ```
 
@@ -1662,23 +1676,30 @@ end_timer(start_the_timer)
 ```python[
 from datetime import datetime
 
-start_time_whole_single_task = datetime.now()
-end_time_whole_single_task = datetime.now()
-                    
-    
 def duration_min_sec(start_time, end_time):
 
-    duration = end_time - start_time
 
-    duration_seconds = duration.total_seconds()
+   duration = end_time - start_time
 
-    minutes = int(duration_seconds // 60)
-    seconds = duration_seconds % 60
-    time_message = f"{minutes}_min__{seconds:.1f}_sec"
 
-    return time_message
+   duration_seconds = duration.total_seconds()
 
-duration_min_sec(start_time_whole_single_task, end_time_whole_single_task)
+
+   minutes = int(duration_seconds // 60)
+   seconds = duration_seconds % 60
+   time_message = f"{minutes}_min__{seconds:.2f}_sec"
+
+
+   return time_message
+
+
+start_time_whole_single_task = datetime.now()
+end_time_whole_single_task = datetime.now()
+
+
+time_taken = duration_min_sec(start_time_whole_single_task, end_time_whole_single_task)
+print(time_taken)
+
 
 ```
 
