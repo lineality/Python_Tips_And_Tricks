@@ -2960,17 +2960,15 @@ config.read(config_file_path)
 # Read String Directly (can convert later)
 X_PATH = config['settings']['X_PATH']
 
-
-
 # .get(): Retrieves a string value.
-string_value = config.get('section', 'option', fallback='default_value')
+string_value = config.get('settings', 'option', fallback='default_value')
 
 # .getboolean(): Retrieves a boolean value.
-boolean_value = config.getboolean('section', 'option', fallback=False)
+boolean_value = config.getboolean('settings', 'option', fallback=False)
 
 # .getint(): Retrieves an integer value.
-int_value = config.getint('section', 'option', fallback=0)
+int_value = config.getint('settings', 'option', fallback=0)
 
 # .getfloat(): Retrieves a floating-point value.
-float_value = config.getfloat('section', 'option', fallback=0.0)
+float_value = config.getfloat('settings', 'option', fallback=0.0)
 ```
