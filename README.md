@@ -2910,3 +2910,34 @@ print(type(files_and_dirs))
 ```
 
 
+# simple config.ini (vanilla python)
+
+
+```python
+import configparser  # standard library
+
+###########################
+# vanilla config file read
+###########################
+"""
+use: import configparser  # standard library
+
+sample file format
+```config.ini file
+[settings]
+DEBUG_AND_PRINT_MODE = true
+```
+"""
+
+# Specify the path to the config file
+config_file_path = 'config.ini'
+
+# Create ConfigParser object
+config = configparser.ConfigParser()
+
+# Read config file
+config.read(config_file_path)
+
+# Access values from loaded config.ini
+DEBUG_AND_PRINT_MODE = config.getboolean('settings', 'DEBUG_AND_PRINT_MODE')
+```
