@@ -2910,8 +2910,23 @@ print(type(files_and_dirs))
 ```
 
 
+
+
+
+
+
+
+
+
+
 # simple config.ini (vanilla python)
 
+### sample file format
+```text
+# config.ini file
+[settings]
+DEBUG_AND_PRINT_MODE = true
+```
 
 ```python
 import configparser  # standard library
@@ -2922,11 +2937,12 @@ import configparser  # standard library
 """
 use: import configparser  # standard library
 
-sample file format
-```config.ini file
+# sample file format
+'''config.ini file
+# config.ini file
 [settings]
 DEBUG_AND_PRINT_MODE = true
-```
+'''
 """
 
 # Specify the path to the config file
