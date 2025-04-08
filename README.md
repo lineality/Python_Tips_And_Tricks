@@ -2972,3 +2972,19 @@ int_value = config.getint('settings', 'option', fallback=0)
 # .getfloat(): Retrieves a floating-point value.
 float_value = config.getfloat('settings', 'option', fallback=0.0)
 ```
+
+
+
+# Modular pandas df filter mask
+```python
+# Initialize mask with first 'condition'
+mask = (df['A'] > 3)
+
+# Add 'conditions' via "&"
+mask = mask & (df['B'] == 'd')
+mask = mask & (df['C'] < 10)
+# etc.
+
+# Apply mask
+filtered_df = df[mask]
+```
