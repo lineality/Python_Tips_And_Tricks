@@ -1255,33 +1255,105 @@ python_version = python_version[:4]
 
 # manual error traceback
 
+
+- function version:
 ```
 import sys
 import traceback
 
 
+
+
+def get_traceback_info(input_exception):
+   """Get formatted traceback information for the current exception."""
+
+
+
+
+   traceback_message = ""
+   final_output_message = ""
+
+
+   e_type, e_value, e_traceback = sys.exc_info()
+   traceback_message = traceback.format_exception(
+       e_type,
+       e_value,
+       e_traceback,
+   )
+  
+   traceback_message = "".join(traceback_message)
+
+
+   final_output_message = f"""
+   Exception in test_traceback():
+   Error     -> {str(input_exception)}
+   Traceback -> {traceback_message}
+   """
+   print(final_output_message)
+
+
+   return final_output_message
+
+
+
+
 def test_traceback():
    try:
-      
        # make the oopsy
        a = 1/0
-
-
        return "hello whirld"
-
-
-
-
+  
    except Exception as e:
+       traceback_message = get_traceback_info(e)
+       # print(traceback_message)
+       return traceback_message
+
+
+
+
+test_traceback()
+
+```
+
+
+- not in function version
+```
+import sys
+import traceback
+
+
+
+
+def test_traceback():
+  try:
+    
+      # make the oopsy
+      a = 1/0
+
+
+
+
+      return "hello whirld"
+
+
+
+
+
+
+
+
+  except Exception as e:
+
+
 
 
        # get manual traceback,
        # not relying on other forms of traceback that may fail:
        e_type, e_value, e_traceback = sys.exc_info()
        traceback_message = traceback.format_exception(
-           e_type,
-           e_value,
-           e_traceback,
+          e_type,
+          e_value,
+          e_traceback,
        )
        traceback_message = "".join(traceback_message)
        message = f"""
@@ -1295,13 +1367,9 @@ def test_traceback():
        return message
 
 
+
+
 test_traceback()
-
-
-
-
-
-
 
 ```
 
@@ -2987,4 +3055,217 @@ mask = mask & (df['C'] < 10)
 
 # Apply mask
 filtered_df = df[mask]
+```
+
+
+# Make HTML (and then .pdf) 
+- Go into your venv env
+- in bash terminal:
+
+```bash
+jupyter nbconvert --to pdf --TemplateExporter.exclude_input=True  PATH_TO_YOUR_NOTEBOOK_HERE.ipynb
+```
+
+# Make it Hot! 
+- add one-hot encoded columns for a categorical column in a pandas dataframe
+```python
+import pandas as pd
+
+def make_it_one_hot(input_dataframe, target_column_name):
+    """
+   import pandas as pd
+
+def make_it_one_hot(input_dataframe, target_column_name):
+    """
+    Creates one-hot encoded columns for a categorical column in a pandas dataframe.
+    
+    Parameters:
+    -----------
+    input_dataframe : pandas.DataFrame
+        The input dataframe containing the categorical column to be one-hot encoded.
+        This dataframe will not be modified.
+    target_column_name : str
+        The name of the categorical column to be one-hot encoded.
+    
+    Returns:
+    --------
+    tuple
+        A tuple containing:
+        - pandas.DataFrame: A new dataframe with one-hot encoded columns.
+        - int: The number of new one-hot encoded columns created.
+        - list: The names of the new one-hot encoded columns.
+    
+    Raises:
+    -------
+    TypeError
+        If input_dataframe is not a pandas DataFrame.
+        If target_column_name is not a string.
+    ValueError
+        If the target column is not found in the dataframe.
+        If the dataframe is empty.
+        If any of the new column names would conflict with existing columns.
+        
+    Example:
+    --------
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({
+    ...     'cats_videos': ['funny', 'cute', 'funny', 'scary']
+    ... })
+    >>> df_hot, num_new_cols, new_cols = make_it_one_hot(df, 'cats_videos')
+    >>> print(f"Number of new columns: {num_new_cols}")
+    Number of new columns: 3
+    >>> print(f"New column names: {new_cols}")
+    New column names: ['cats_videos_funny', 'cats_videos_cute', 'cats_videos_scary']
+    """
+    # Validate input types
+    if not isinstance(input_dataframe, pd.DataFrame):
+        raise TypeError("input_dataframe must be a pandas DataFrame")
+    
+    if not isinstance(target_column_name, str):
+        raise TypeError("target_column_name must be a string")
+    
+    # Validate dataframe and column existence
+    if input_dataframe.empty:
+        raise ValueError("input_dataframe cannot be empty")
+    
+    if target_column_name not in input_dataframe.columns:
+        raise ValueError(f"Target column '{target_column_name}' not found in the dataframe")
+    
+    # Create a copy of the input dataframe to avoid modifying the original
+    modified_dataframe = input_dataframe.copy()
+    
+    # Generate one-hot encoded columns with prefixed column names
+    one_hot_columns = pd.get_dummies(modified_dataframe[target_column_name], 
+                                     prefix=target_column_name)
+    
+    # Get the list of new column names
+    new_column_names = list(one_hot_columns.columns)
+    
+    # Check if any of the new column names already exist in the input dataframe
+    existing_columns = set(input_dataframe.columns)
+    conflicting_columns = [col for col in new_column_names if col in existing_columns]
+    
+    if conflicting_columns:
+        raise ValueError(
+            f"One-hot encoding would create columns that already exist: {conflicting_columns}. "
+            f"Please rename these columns in your original dataframe first."
+        )
+    
+    # Count the number of new one-hot columns created
+    number_of_one_hot_columns = len(new_column_names)
+    
+    # Combine original dataframe with the new one-hot columns
+    result_dataframe = pd.concat([modified_dataframe, one_hot_columns], axis=1)
+    
+    return result_dataframe, number_of_one_hot_columns, new_column_names
+
+
+```
+
+# Use/Get Latest File Version
+```python
+import os
+import re
+
+def get_highest_version_file(base_name="cats_data_v", extension=".csv"):
+    """
+    Find the file with the highest version number in the current directory.
+    
+    Args:
+        base_name: Base part of the filename before the version number
+        extension: File extension including the dot
+        
+    Returns:
+        String with the name of the file with highest version number or None if no files found
+    """
+    files = os.listdir('.')
+    version_pattern = re.compile(f"{re.escape(base_name)}(\\d+){re.escape(extension)}$")
+    
+    highest_version = -1
+    highest_file = None
+    
+    for file in files:
+        match = version_pattern.match(file)
+        if match:
+            version = int(match.group(1))
+            if version > highest_version:
+                highest_version = version
+                highest_file = file
+                
+    return highest_file
+
+# Example usage:
+if __name__ == "__main__":
+    highest_file = get_highest_version_file("cats_data_v", ".csv")
+    print(f"Highest version file: {highest_file}")
+
+```
+
+
+# time filters (pandas)
+
+```python
+#################
+# Start a 'mask'
+#################
+mask = pd.Series([True] * len(df), index=df.index)                # ALL rows
+# mask = (df['groups'] == True)                                    
+
+###################################
+# Add 'conditions' to mask via "&"
+###################################
+
+# Filter by POSIX timestamp range
+# mask = mask & (df['posix_time'] >= 1609459200)                  # From 2021-01-01 00:00:00 UTC
+# mask = mask & (df['posix_time'] <= 1640995199)                  # To 2021-12-31 23:59:59 UTC
+
+# Filter by datetime range
+# mask = mask & (df['datetime'] >= pd.to_datetime('2021-01-01 00:00:00'))
+# mask = mask & (df['datetime'] <= pd.to_datetime('2021-12-31 23:59:59'))
+
+# Filter for specific date
+# specific_date = pd.to_datetime('2021-07-01').date()
+# mask = mask & (df['datetime'].dt.date == specific_date)
+
+# Filter for specific month
+# mask = mask & (df['datetime'].dt.year == 2021)
+# mask = mask & (df['datetime'].dt.month == 7)
+
+# Filter for specific day of week (Monday = 0, Sunday = 6)
+# mask = mask & (df['datetime'].dt.dayofweek == 0)                # All Mondays
+
+# Filter for time of day
+# mask = mask & (df['datetime'].dt.hour >= 9)                     # 9 AM or later
+# mask = mask & (df['datetime'].dt.hour < 17)                     # Before 5 PM
+
+# Filter for last X days from reference date
+# reference_date = pd.to_datetime('2021-12-31')
+# days_ago = reference_date - pd.Timedelta(days=7)
+# mask = mask & (df['datetime'] > days_ago)
+# mask = mask & (df['datetime'] <= reference_date)
+
+# Filter for last X hours
+# last_x_hours = pd.Timestamp.now() - pd.Timedelta(hours=24)
+# mask = mask & (df['datetime'] >= last_x_hours)
+
+# Filter for business days only (Monday through Friday)
+# mask = mask & (df['datetime'].dt.dayofweek < 5)                 # 0-4 = Mon-Fri
+
+# Filter for specific quarter of the year
+# mask = mask & (df['datetime'].dt.quarter == 2)                  # Q2
+
+# Filter for date ranges relative to current date
+# mask = mask & (df['datetime'] >= pd.Timestamp.now().normalize() - pd.Timedelta(days=30))  # Last 30 days
+
+# Filter for specific week of year
+# mask = mask & (df['datetime'].dt.isocalendar().week == 25)       # Week 25
+
+# Filter for weekends
+# mask = mask & (df['datetime'].dt.dayofweek >= 5)                # 5-6 = Sat-Sun
+
+#############
+# Apply Mask
+#############
+filtered_df = df[mask]
+
 ```
