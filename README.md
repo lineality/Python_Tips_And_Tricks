@@ -3071,14 +3071,11 @@ jupyter nbconvert --to pdf --TemplateExporter.exclude_input=True  PATH_TO_YOUR_N
 ```python
 import pandas as pd
 
-def make_it_one_hot(input_dataframe, target_column_name):
-    """
-   import pandas as pd
 
 def make_it_one_hot(input_dataframe, target_column_name):
     """
     Creates one-hot encoded columns for a categorical column in a pandas dataframe.
-    
+
     Parameters:
     -----------
     input_dataframe : pandas.DataFrame
@@ -3086,7 +3083,7 @@ def make_it_one_hot(input_dataframe, target_column_name):
         This dataframe will not be modified.
     target_column_name : str
         The name of the categorical column to be one-hot encoded.
-    
+
     Returns:
     --------
     tuple
@@ -3094,7 +3091,7 @@ def make_it_one_hot(input_dataframe, target_column_name):
         - pandas.DataFrame: A new dataframe with one-hot encoded columns.
         - int: The number of new one-hot encoded columns created.
         - list: The names of the new one-hot encoded columns.
-    
+
     Raises:
     -------
     TypeError
@@ -3104,7 +3101,14 @@ def make_it_one_hot(input_dataframe, target_column_name):
         If the target column is not found in the dataframe.
         If the dataframe is empty.
         If any of the new column names would conflict with existing columns.
-        
+
+    Note:
+    This could potentially create column names with decimal points
+    (like name_1.0 instead of name_1) in the following scenario:
+    If the categorical column contains numeric values that are stored as floats
+    rather than integers or strings, pandas will preserve the
+    float format in the column names.
+
     Example:
     --------
     >>> import pandas as pd
@@ -3120,44 +3124,49 @@ def make_it_one_hot(input_dataframe, target_column_name):
     # Validate input types
     if not isinstance(input_dataframe, pd.DataFrame):
         raise TypeError("input_dataframe must be a pandas DataFrame")
-    
+
     if not isinstance(target_column_name, str):
         raise TypeError("target_column_name must be a string")
-    
+
     # Validate dataframe and column existence
     if input_dataframe.empty:
         raise ValueError("input_dataframe cannot be empty")
-    
+
     if target_column_name not in input_dataframe.columns:
         raise ValueError(f"Target column '{target_column_name}' not found in the dataframe")
-    
+
     # Create a copy of the input dataframe to avoid modifying the original
     modified_dataframe = input_dataframe.copy()
-    
+
     # Generate one-hot encoded columns with prefixed column names
-    one_hot_columns = pd.get_dummies(modified_dataframe[target_column_name], 
+    one_hot_columns = pd.get_dummies(modified_dataframe[target_column_name],
                                      prefix=target_column_name)
-    
+
+    # Replace spaces with underscores in column names
+    one_hot_columns.columns = [col.replace(' ', '_') for col in one_hot_columns.columns]
+
     # Get the list of new column names
     new_column_names = list(one_hot_columns.columns)
-    
+
     # Check if any of the new column names already exist in the input dataframe
     existing_columns = set(input_dataframe.columns)
     conflicting_columns = [col for col in new_column_names if col in existing_columns]
-    
+
     if conflicting_columns:
         raise ValueError(
             f"One-hot encoding would create columns that already exist: {conflicting_columns}. "
             f"Please rename these columns in your original dataframe first."
         )
-    
+
     # Count the number of new one-hot columns created
     number_of_one_hot_columns = len(new_column_names)
-    
+
     # Combine original dataframe with the new one-hot columns
     result_dataframe = pd.concat([modified_dataframe, one_hot_columns], axis=1)
-    
+
     return result_dataframe, number_of_one_hot_columns, new_column_names
+
+
 
 
 ```
