@@ -2815,7 +2815,7 @@ def extract_dict_list_from_dirty_json_md_str(text):
 
 
 
-# timer
+# mini timer
 ```python
 import time
 from datetime import datetime
