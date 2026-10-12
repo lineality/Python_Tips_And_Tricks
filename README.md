@@ -2817,73 +2817,88 @@ def extract_dict_list_from_dirty_json_md_str(text):
 
 # timer
 ```python
-# Function-Timer Functions
-
 import time
 from datetime import datetime
 
+
 # helper function: start timer for python script
 def start_timer():
-   """
-   # do
-   start_time = start_timer()
+  """
+  # do
+  start_time = start_timer()
 
+
+  requires:
+      import time
+      from datetime import datetime
+  """
+  # get time
+  sample_time = datetime.now()
+  # make readable string
+  readable_timesatamp = sample_time.strftime('%Y-%m-%d %H:%M:%S')
+
+
+  time_message = f"""
+  Starting Time:
+      UTC {readable_timesatamp}
+  """
+  # debug_log(time_message)
+
+
+
+
+  start_stamp = time.time()
+  return start_stamp
+
+
+
+
+# helper function: finish timer for python script
+def end_timer(start_time):
+   """
    requires:
-       import time
-       from datetime import datetime
+      import time
+      start_time = time.time()
    """
    # get time
    sample_time = datetime.now()
    # make readable string
    readable_timesatamp = sample_time.strftime('%Y-%m-%d %H:%M:%S')
 
+
+
+
    time_message = f"""
-   Starting Time:
-       UTC {readable_timesatamp}
+   Finish Time:
+      UTC {readable_timesatamp}
    """
-   # debug_log(time_message)
 
 
-   start_stamp = time.time()
-   return start_stamp
+   # Record the end time
+   end_time = time.time()
+   # Calculate the elapsed time
+   elapsed_time = end_time - start_time
+   # Print the elapsed time in seconds
 
 
-# helper function: finish timer for python script
-def end_timer(start_time):
-    """
-    requires:
-       import time
-       start_time = time.time()
-    """
-    # get time
-    sample_time = datetime.now()
-    # make readable string
-    readable_timesatamp = sample_time.strftime('%Y-%m-%d %H:%M:%S')
-    
-    
-    time_message = f"""
-    Finish Time:
-       UTC {readable_timesatamp}
-    """
-    debug_log(time_message)
-    
-    # Record the end time
-    end_time = time.time()
-    # Calculate the elapsed time
-    elapsed_time = end_time - start_time
-    # Print the elapsed time in seconds
+   # Calculate hours, minutes, and seconds
+   hours = int(elapsed_time // 3600)
+   minutes = int((elapsed_time % 3600) // 60)
+   seconds = elapsed_time % 60
 
-    # Calculate hours, minutes, and seconds
-    hours = int(elapsed_time // 3600)
-    minutes = int((elapsed_time % 3600) // 60)
-    seconds = elapsed_time % 60
-    
-    # Format the message
-    time_message = f"""Elapsed time: total posix time: {elapsed_time} s -> {hours} hr : {minutes} min : {seconds:.6f} sec"""
-        
-    debug_log(time_message)
-    # print(time_message)
-    return time_message
+
+   # Format the message
+   time_message = f"""Elapsed time: total posix time: {elapsed_time} s -> {hours} hr : {minutes} min : {seconds:.6f} sec"""
+
+
+   # print(time_message)
+   return time_message
+
+
+# test
+test_timer = start_timer()
+end_timer(test_timer)
+
 
 #######
 # Test
@@ -3277,4 +3292,11 @@ mask = pd.Series([True] * len(df), index=df.index)                # ALL rows
 #############
 filtered_df = df[mask]
 
+```
+
+
+# .ipynb to .py
+- install jupytext
+```bash
+jupytext --to py:light {name of notebook}
 ```
